@@ -1,550 +1,1075 @@
-@prefix : <http://purl.org/db/nosql#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://purl.org/db/nosql> .  
+#################################################################
+###  Generated with the experimental alpha version of the TTL exporter of WebVOWL (version 1.1.7)  http://visualdataweb.de/webvowl/   ###
+#################################################################
+
+@prefix : 		<http://purl.org/db/nosql> .
+@prefix rdf: 		<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: 		<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: 		<http://www.w3.org/2002/07/owl#> .
+@prefix xsd: 		<http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: 		<http://purl.org/dc/elements/1.1/#> .
+@prefix xml: 		<http://www.w3.org/XML/1998/namespace> .
+@base 			<http://purl.org/db/nosql> .
 
 <http://purl.org/db/nosql> rdf:type owl:Ontology ;
-                            <http://creativecommons.org/ns#license> <http://creativecommons.org/licenses/by-nc-sa/3.0/> ;
-                            <http://purl.org/dc/elements/1.1/created> "2017-12-15T17:00:00"^^xsd:dateTime ;
-                            <http://purl.org/dc/elements/1.1/creator> "http://mohamednadjibmami.com/me"^^xsd:string ;
-                            <http://purl.org/dc/elements/1.1/description> "A vocabulary about NOSQL stores, and their related concepts."^^xsd:string ;
-                            <http://purl.org/dc/elements/1.1/publisher> <http://de.dbpedia.org/resource/Fraunhofer-Gesellschaft> ;
-                            <http://purl.org/dc/elements/1.1/rights> <http://creativecommons.org/licenses/by-nc-sa/3.0/> ;
-                            <http://purl.org/dc/elements/1.1/title> "Vocabulary about NOSQL stores"@en ;
-                            <http://purl.org/vocab/vann/preferredNamespacePrefix> "nosql"^^xsd:string ;
-                            <http://purl.org/vocab/vann/preferredNamespaceUri> "http://purl.org/db/nosql#"^^xsd:string ;
-                            rdfs:comment "Version 0.1: 1st publication"^^xsd:string ;
-                            owl:versionInfo "0.1"^^xsd:string .
-
-#################################################################
-#    Annotation properties
+                           dc:title "Friend of a Friend (FOAF) vocabulary"@en; 
+                           dc:description "A vocabulary about NOSQL stores, and their related concepts."@en; 
+                           dc:description "A vocabulary about NOSQL stores, and their related concepts."@en; 
+                           owl:versionInfo "0.1"@en;
+                           dc:creator "http://mohamednadjibmami.com/me" . 
 #################################################################
 
-###  http://creativecommons.org/ns#license
-<http://creativecommons.org/ns#license> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/contributor
-<http://purl.org/dc/elements/1.1/contributor> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/creator
-<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/1999/02/22-rdf-syntax-ns#about
-rdf:about rdf:type owl:AnnotationProperty ;
-          rdf:label "About"@en.
-
-
-###  http://www.w3.org/1999/02/22-rdf-syntax-ns#resource
-rdf:resource rdf:type owl:AnnotationProperty .
-
-
-#################################################################
-#    Object Properties
-#################################################################
-
-###  http://purl.org/db/nosql#compliesWith
-:compliesWith rdf:type owl:ObjectProperty ;
-              rdfs:domain :Store ;
-              rdfs:range :Properties ;
-              rdfs:comment "Tell which database is compliant with which properties, like relational database with ACID properties, or NOSQL wirh BASE properties."@en .
-
-
-###  http://purl.org/db/nosql#hasAttribute
-:hasAttribute rdf:type owl:ObjectProperty ;
-              rdfs:domain :Entity ;
-              rdfs:range :Attribute ;
-              rdfs:comment "An entity in a database consists of a set of attributes."@en .
-
-
-###  http://purl.org/db/nosql#hasCollection
-:hasCollection rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf :hasEntity ;
-               rdfs:domain :MongoDB ;
-               rdfs:range :Collection ;
-               rdfs:comment "Special to MongoDB, data is stored in collections of documents."@en .
-
-
-###  http://purl.org/db/nosql#hasData_Bucket
-:hasData_Bucket rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf :hasEntity ;
-                rdfs:domain :CouchDB ;
-                rdfs:range :Data_Bucket ;
-                rdfs:comment "Special to CouchDB databases, a CouchDB has a number of data buckets."@en .
-
-
-###  http://purl.org/db/nosql#hasEntity
-:hasEntity rdf:type owl:ObjectProperty ;
-           rdfs:domain :Store ;
-           rdfs:range :Entity ;
-           rdfs:comment "A database contails one or more entities."@en .
-
-
-###  http://purl.org/db/nosql#hasIndex
-:hasIndex rdf:type owl:ObjectProperty ;
-          rdfs:domain :Store ;
-          rdfs:range :Index .
-
-
-###  http://purl.org/db/nosql#hasPrimaryKey
-:hasPrimaryKey rdf:type owl:ObjectProperty ;
-               rdfs:domain :Entity ;
-               rdfs:range :PrimaryKey ;
-               rdfs:comment "Sets the primary key of an entity of a database."@en .
-
-
-###  http://purl.org/db/nosql#hasTable
-:hasTable rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf :hasEntity ;
-          rdfs:domain :NonRelationalDB ;
-          rdfs:range :Table ;
-          rdfs:comment "Certain NOSQL databases store data in tables."@en .
-
-
-###  http://purl.org/db/nosql#queriedBy
-:queriedBy rdf:type owl:ObjectProperty ;
-           rdfs:domain :Store ;
-           rdfs:range :QueryLanguage ;
-           rdfs:comment "Define the query language of a certain database."@en .
-
-
-###  http://purl.org/db/nosql#runsIn
-:runsIn rdf:type owl:ObjectProperty ;
-        rdfs:domain :Store ;
-        rdfs:range :Cluster ;
-        rdfs:comment "A distributed database can run in a cluster."@en .
-
-
-###  http://purl.org/db/nosql#store
-:store rdf:type owl:ObjectProperty ;
-       rdf:label "Store"; 
-       rdfs:range :Store .
-
-
-###  http://purl.org/db/nosql#viewIn
-:viewIn rdf:type owl:ObjectProperty ;
-        rdfs:domain :View ;
-        rdfs:range :Store .
-
-
-#################################################################
-#    Classes
-#################################################################
-
-###  http://purl.org/db/nosql#ACID
-:ACID rdf:type owl:Class ;
-      rdfs:subClassOf :Properties ;
-      owl:disjointWith :BASE ;
-      rdfs:comment "In a database, ACID are four properties: Atomicity, Consistency, Isolation, and Durability, that ensure that transactions, failed or succeded, leave the data in a valid and consistent state."@en .
-
-
-###  http://purl.org/db/nosql#AQL
-:AQL rdf:type owl:Class ;
-     rdfs:subClassOf :QueryLanguage ;
-     rdfs:comment "ArangoDB Query Language, query language used to interact with an ArangoDB database."@en .
-
-
-###  http://purl.org/db/nosql#Accumulo
-:Accumulo rdf:type owl:Class ;
-          rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#AllegroGraph
-:AllegroGraph rdf:type owl:Class ;
-              rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#ArangoDB
-:ArangoDB rdf:type owl:Class ;
-          rdfs:subClassOf :Document ,
-                          :Graph ,
-                          :KeyValue ,
-                          :Multi-model .
-
-
-###  http://purl.org/db/nosql#Attribute
-:Attribute rdf:type owl:Class ;
-           rdfs:comment "A term that groups all concepts used by different databases to characterize a particular datum stored in it, e.g., column in  Cassandra, field in MongoDB"@en .
-
-
-###  http://purl.org/db/nosql#BASE
-:BASE rdf:type owl:Class ;
-      rdfs:subClassOf :Properties ;
-      rdfs:comment "A set of four properties: Basically Available, Soft state, Eventual consistency, that are commonly found in distributed NOSQL stores, as apposed to ACID in relational databases. Data added might not be ready for query everywhere, but will eventually be, and hence a system state is in constant change."@en .
-
-
-###  http://purl.org/db/nosql#Bagri
-:Bagri rdf:type owl:Class ;
-       rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#Berkeley_DB
-:Berkeley_DB rdf:type owl:Class ;
-             rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#Blazegraph
-:Blazegraph rdf:type owl:Class ;
-            rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#CQL
-:CQL rdf:type owl:Class ;
-     rdfs:subClassOf :QueryLanguage ;
-     rdfs:comment "Cassandra Query Language, query language (SQL-like) used to interact with a Cassandra database."@en .
-
-
-###  http://purl.org/db/nosql#Cassandra
-:Cassandra rdf:type owl:Class ;
-           rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#Chouchbase
-:Chouchbase rdf:type owl:Class ;
-            rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#Cloud_Datastore
-:Cloud_Datastore rdf:type owl:Class ;
-                 rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#Cloudant
-:Cloudant rdf:type owl:Class ;
-          rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#Cluster
-:Cluster rdf:type owl:Class ;
-         rdfs:comment "A group of physical or virtual computing machines."@en .
-
-
-###  http://purl.org/db/nosql#Collection
-:Collection rdf:type owl:Class ;
-            rdfs:subClassOf :Entity .
-
-
-###  http://purl.org/db/nosql#Columnar
-:Columnar rdf:type owl:Class ;
-          rdfs:subClassOf :Store ;
-          rdfs:comment "Columnar or column-based store organises data virtually around rows, but stores it physically by columns. It may allow to store rows of different schema in one same table. Edited by Rashikh123."@en .
-
-
-###  http://purl.org/db/nosql#Cosmos_DB
-:Cosmos_DB rdf:type owl:Class ;
-           rdfs:subClassOf :Columnar ,
-                           :Document ,
-                           :Graph ,
-                           :KeyValue ,
-                           :Multi-model .
-
-
-###  http://purl.org/db/nosql#CouchDB
-:CouchDB rdf:type owl:Class ;
-         rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#Cypher
-:Cypher rdf:type owl:Class ;
-        rdfs:subClassOf :QueryLanguage ;
-        rdfs:comment "Query language used to intereact with a Neo4j database."@en .
-
-
-###  http://purl.org/db/nosql#DSE_Graph
-:DSE_Graph rdf:type owl:Class ;
-           rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#Data_Bucket
-:Data_Bucket rdf:type owl:Class ;
-             rdfs:subClassOf :Entity .
-
-
-###  http://purl.org/db/nosql#Dgraph
-:Dgraph rdf:type owl:Class ;
-        rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#Document
-:Document rdf:type owl:Class ;
-          rdfs:subClassOf :Store ;
-          rdfs:comment "Document store stores data in form of documents, like under JSOB/BSON formats."@en .
-
-
-###  http://purl.org/db/nosql#DocumentDB
-:DocumentDB rdf:type owl:Class ;
-            rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#DocumentID
-:DocumentID rdf:type owl:Class ;
-            rdfs:subClassOf :PrimaryKey .
-
-
-###  http://purl.org/db/nosql#Druid
-:Druid rdf:type owl:Class ;
-       rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#DynamoDB
-:DynamoDB rdf:type owl:Class ;
-          rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#Elassandra
-:Elassandra rdf:type owl:Class ;
-            rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#Entity
-:Entity rdf:type owl:Class ;
-        rdfs:comment "A term that groups all concepts used by different databases to store similar data together."@en .
-
-
-###  http://purl.org/db/nosql#GlobalSecondaryIndex
-:GlobalSecondaryIndex rdf:type owl:Class ;
-                      rdfs:subClassOf :View .
-
-
-###  http://purl.org/db/nosql#Graph
-:Graph rdf:type owl:Class ;
-       rdfs:subClassOf :Store ;
-       rdfs:comment "Graph store stores highly interconnected data, in form of graphs."@en .
-
-
-###  http://purl.org/db/nosql#Graph_Engine
-:Graph_Engine rdf:type owl:Class ;
-              rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#HBase
-:HBase rdf:type owl:Class ;
-       rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#HQL
-:HQL rdf:type owl:Class ;
-     rdfs:subClassOf :QueryLanguage ;
-     rdfs:comment "Hypertable Query Language, query language (SQL-like) used to interact with a Hypertable database."@en .
-
-
-###  http://purl.org/db/nosql#HypergraphDB
-:HypergraphDB rdf:type owl:Class ;
-              rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#Hypertable
-:Hypertable rdf:type owl:Class ;
-            rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#Index
-:Index rdf:type owl:Class .
-
-
-###  http://purl.org/db/nosql#InfiniteGraph
-:InfiniteGraph rdf:type owl:Class ;
-               rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#JanusGraph
-:JanusGraph rdf:type owl:Class ;
-            rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#KeyValue
-:KeyValue rdf:type owl:Class ;
-          rdfs:subClassOf :Store ;
-          rdfs:comment "Key-value store stores data in form of long key,value maps."@en .
-
-
-###  http://purl.org/db/nosql#Kudu
-:Kudu rdf:type owl:Class ;
-      rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#MarkLogic
-:MarkLogic rdf:type owl:Class ;
-           rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#MaterializedView
-:MaterializedView rdf:type owl:Class ;
-                  rdfs:subClassOf :View .
-
-
-###  http://purl.org/db/nosql#Memcached
-:Memcached rdf:type owl:Class ;
-           rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#MonetDB
-:MonetDB rdf:type owl:Class ;
-         rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#MongoDB
-:MongoDB rdf:type owl:Class ;
-         rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#Multi-model
-:Multi-model rdf:type owl:Class ;
-             rdfs:subClassOf :Store .
-
-
-###  http://purl.org/db/nosql#N1QL
-:N1QL rdf:type owl:Class ;
-      rdfs:subClassOf :QueryLanguage ;
-      rdfs:comment "Query language (SQL-like) used to interact with a Couchbase database."^^xsd:string .
-
-
-###  http://purl.org/db/nosql#Neo4j
-:Neo4j rdf:type owl:Class ;
-       rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#NonRelationalDB
-:NonRelationalDB rdf:type owl:Class ;
-                 owl:equivalentClass :Store ;
-                 rdfs:comment "A non-relation database, is a database that is designed around other models than the relational model. Used interchangbly with NOSQL database or store."@en .
-
-
-###  http://purl.org/db/nosql#ObjectID
-:ObjectID rdf:type owl:Class ;
-          rdfs:subClassOf :PrimaryKey .
-
-
-###  http://purl.org/db/nosql#Oracle_NoSQL_Database
-:Oracle_NoSQL_Database rdf:type owl:Class ;
-                       rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#OrientDB
-:OrientDB rdf:type owl:Class ;
-          rdfs:subClassOf :Document ,
-                          :Graph ,
-                          :KeyValue ,
-                          :Multi-model .
-
-
-###  http://purl.org/db/nosql#PrimaryKey
-:PrimaryKey rdf:type owl:Class .
-
-
-###  http://purl.org/db/nosql#Primary_key
-:Primary_key rdf:type owl:Class ;
-             rdfs:subClassOf :PrimaryKey .
-
-
-###  http://purl.org/db/nosql#Properties
-:Properties rdf:type owl:Class .
-
-
-###  http://purl.org/db/nosql#QueryLanguage
-:QueryLanguage rdf:type owl:Class ;
-               rdfs:comment "A syntax of a query or dialect to interact with a database."@en .
-
-
-###  http://purl.org/db/nosql#RavenDB
-:RavenDB rdf:type owl:Class ;
-         rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#Redis
-:Redis rdf:type owl:Class ;
-       rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#RethinkDB
-:RethinkDB rdf:type owl:Class ;
-           rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#Riak
-:Riak rdf:type owl:Class ;
-      rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#Scalaris
-:Scalaris rdf:type owl:Class ;
-          rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#Scylla
-:Scylla rdf:type owl:Class ;
-        rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#SecondaryIndex
-:SecondaryIndex rdf:type owl:Class ;
-                rdfs:subClassOf :Index .
-
-
-###  http://purl.org/db/nosql#SequoiaDB
-:SequoiaDB rdf:type owl:Class ;
-           rdfs:subClassOf :Document .
-
-
-###  http://purl.org/db/nosql#SimpleDB
-:SimpleDB rdf:type owl:Class ;
-          rdfs:subClassOf :Columnar .
-
-
-###  http://purl.org/db/nosql#Sparksee
-:Sparksee rdf:type owl:Class ;
-          rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#Store
-:Store rdf:type owl:Class ;
-       rdfs:comment "Only SQL, NOSQL stores are databases designed around other models than the traditional relational database. It has five categories: Key-value, document, columnar, graph and multi-model."@en ,
-                    "Set the type of NOSQL a certain database is."@en .
-
-
-###  http://purl.org/db/nosql#Table
-:Table rdf:type owl:Class ;
-       rdfs:subClassOf :Entity .
-
-
-###  http://purl.org/db/nosql#Tarantool
-:Tarantool rdf:type owl:Class ;
-           rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#Trinity
-:Trinity rdf:type owl:Class ;
-         rdfs:subClassOf :Graph .
-
-
-###  http://purl.org/db/nosql#View
-:View rdf:type owl:Class .
-
-
-###  http://purl.org/db/nosql#Voldemort
-:Voldemort rdf:type owl:Class ;
-           rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#c-treeACE
-:c-treeACE rdf:type owl:Class ;
-           rdfs:subClassOf :KeyValue .
-
-
-###  http://purl.org/db/nosql#upscaledb
-:upscaledb rdf:type owl:Class ;
-           rdfs:subClassOf :KeyValue .
-
-
-[ rdf:resource "http://creativecommons.org/licenses/by/3.0/"^^xsd:string
-] .
-
-[ rdf:about "http://mohamednadjibmami.com/me"^^xsd:string
- ] .
-
-###  Generated by the OWL API (version 5.1.0) https://github.com/owlcs/owlapi/
+###  Property Definitions (Number of Property) 73 ###
+#  --------------------------- Property 0------------------------- 
+<http://xmlns.com/foaf/0.1/workInfoHomepage> rdf:type owl:ObjectProperty ;
+                                             rdfs:comment "A work info homepage of some person; a page about their work for some organization." ;
+                                             rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                             vs:term_status "testing" ;
+                                             rdfs:label "workInfoHomepage"@IRI-based; 
+                                             rdfs:label "workInfoHomepage"@iri-based; 
+                                             rdfs:label "work info homepage"@en; 
+                                             rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                             rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 1------------------------- 
+<http://xmlns.com/foaf/0.1/based_near> rdf:type owl:ObjectProperty ;
+                                       rdfs:comment "A location that something is based near, for some broadly human notion of near." ;
+                                       rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                       vs:term_status "testing" ;
+                                       rdfs:label "based_near"@IRI-based; 
+                                       rdfs:label "based_near"@iri-based; 
+                                       rdfs:label "based near"@en; 
+                                       rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing>;
+                                       rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> . 
+#  --------------------------- Property 2------------------------- 
+<http://xmlns.com/foaf/0.1/page> rdf:type owl:ObjectProperty; 
+                                 owl:inverseOf <http://xmlns.com/foaf/0.1/topic> ;
+                                 rdfs:comment "A page or document about this thing." ;
+                                 rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                 vs:term_status "stable" ;
+                                 rdfs:label "page"@IRI-based; 
+                                 rdfs:label "page"@iri-based; 
+                                 rdfs:label "page"@en; 
+                                 rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 3------------------------- 
+<http://xmlns.com/foaf/0.1/givenName> rdf:type owl:DatatypeProperty ;
+                                      rdfs:comment "The given name of some person." ;
+                                      rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                      vs:term_status "testing" ;
+                                      rdfs:label "givenName"@IRI-based; 
+                                      rdfs:label "givenName"@iri-based; 
+                                      rdfs:label "Given name"@en; 
+                                      rdfs:range rdfs:Literal . 
+#  --------------------------- Property 4------------------------- 
+<http://xmlns.com/foaf/0.1/dnaChecksum> rdf:type owl:DatatypeProperty ;
+                                        rdfs:comment "A checksum for the DNA of some thing. Joke." ;
+                                        rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                        vs:term_status "archaic" ;
+                                        rdfs:label "dnaChecksum"@IRI-based; 
+                                        rdfs:label "dnaChecksum"@iri-based; 
+                                        rdfs:label "DNA checksum"@en; 
+                                        rdfs:range rdfs:Literal . 
+#  --------------------------- Property 5------------------------- 
+<http://xmlns.com/foaf/0.1/yahooChatID> rdf:type owl:DatatypeProperty ;
+                                        rdfs:comment "A Yahoo chat ID" ;
+                                        rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                        vs:term_status "testing" ;
+                                        rdfs:label "yahooChatID"@IRI-based; 
+                                        rdfs:label "yahooChatID"@iri-based; 
+                                        rdfs:label "Yahoo chat ID"@en; 
+                                        rdfs:range rdfs:Literal . 
+#  --------------------------- Property 6------------------------- 
+<http://xmlns.com/foaf/0.1/name> rdf:type owl:DatatypeProperty ;
+                                 rdfs:comment "A name for some thing." ;
+                                 rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                 vs:term_status "testing" ;
+                                 rdfs:label "name"@IRI-based; 
+                                 rdfs:label "name"@iri-based; 
+                                 rdfs:label "name"@en; 
+                                 rdfs:range rdfs:Literal . 
+#  --------------------------- Property 7------------------------- 
+<http://xmlns.com/foaf/0.1/icqChatID> rdf:type owl:DatatypeProperty ;
+                                      rdfs:comment "An ICQ chat ID" ;
+                                      rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                      vs:term_status "testing" ;
+                                      rdfs:label "icqChatID"@IRI-based; 
+                                      rdfs:label "icqChatID"@iri-based; 
+                                      rdfs:label "ICQ chat ID"@en; 
+                                      rdfs:range rdfs:Literal . 
+#  --------------------------- Property 8------------------------- 
+<http://xmlns.com/foaf/0.1/givenname> rdf:type owl:DatatypeProperty ;
+                                      rdfs:comment "The given name of some person." ;
+                                      rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                      vs:term_status "archaic" ;
+                                      rdfs:label "givenname"@IRI-based; 
+                                      rdfs:label "givenname"@iri-based; 
+                                      rdfs:label "Given name"@en; 
+                                      rdfs:range rdfs:Literal . 
+#  --------------------------- Property 9------------------------- 
+<http://purl.org/db/nosql#hasIndex> rdf:type owl:ObjectProperty ;
+                                    rdfs:label "hasIndex"@IRI-based; 
+                                    rdfs:label "hasIndex"@iri-based; 
+                                    rdfs:domain undefined;
+                                    rdfs:range <http://purl.org/db/nosql#Index> . 
+#  --------------------------- Property 10------------------------- 
+<http://xmlns.com/foaf/0.1/isPrimaryTopicOf> rdf:type owl:ObjectProperty, owl:InverseFunctionalProperty; 
+                                             owl:inverseOf <http://xmlns.com/foaf/0.1/primaryTopic> ;
+                                             rdfs:comment "A document that this thing is the primary topic of." ;
+                                            rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/page>;
+                                             rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                             vs:term_status "stable" ;
+                                             rdfs:label "isPrimaryTopicOf"@IRI-based; 
+                                             rdfs:label "isPrimaryTopicOf"@iri-based; 
+                                             rdfs:label "is primary topic of"@en; 
+                                             rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 11------------------------- 
+<http://xmlns.com/foaf/0.1/depiction> rdf:type owl:ObjectProperty; 
+                                      owl:inverseOf <http://xmlns.com/foaf/0.1/depicts> ;
+                                      rdfs:comment "A depiction of some thing." ;
+                                      rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                      vs:term_status "testing" ;
+                                      rdfs:label "depiction"@IRI-based; 
+                                      rdfs:label "depiction"@iri-based; 
+                                      rdfs:label "depiction"@en; 
+                                      rdfs:range <http://xmlns.com/foaf/0.1/Image> . 
+#  --------------------------- Property 12------------------------- 
+<http://xmlns.com/foaf/0.1/family_name> rdf:type owl:DatatypeProperty ;
+                                        rdfs:comment "The family name of some person." ;
+                                        rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                        vs:term_status "archaic" ;
+                                        rdfs:label "family_name"@IRI-based; 
+                                        rdfs:label "family_name"@iri-based; 
+                                        rdfs:label "family_name"@en; 
+                                        rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                        rdfs:range rdfs:Literal . 
+#  --------------------------- Property 13------------------------- 
+<http://xmlns.com/foaf/0.1/title> rdf:type owl:DatatypeProperty ;
+                                  rdfs:comment "Title (Mr, Mrs, Ms, Dr. etc)" ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                  vs:term_status "testing" ;
+                                  rdfs:label "title"@IRI-based; 
+                                  rdfs:label "title"@iri-based; 
+                                  rdfs:label "title"@en; 
+                                  rdfs:range rdfs:Literal . 
+#  --------------------------- Property 14------------------------- 
+<http://purl.org/db/nosql#queriedBy> rdf:type owl:ObjectProperty ;
+                                     rdfs:comment "Define the query language of a certain database." ;
+                                     rdfs:label "queriedBy"@IRI-based; 
+                                     rdfs:label "queriedBy"@iri-based; 
+                                     rdfs:domain undefined;
+                                     rdfs:range <http://purl.org/db/nosql#QueryLanguage> . 
+#  --------------------------- Property 15------------------------- 
+<http://xmlns.com/foaf/0.1/account> rdf:type owl:ObjectProperty ;
+                                    rdfs:comment "Indicates an account held by this agent." ;
+                                    rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                    vs:term_status "testing" ;
+                                    rdfs:label "account"@IRI-based; 
+                                    rdfs:label "account"@iri-based; 
+                                    rdfs:label "account"@en; 
+                                    rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                    rdfs:range <http://xmlns.com/foaf/0.1/OnlineAccount> . 
+#  --------------------------- Property 16------------------------- 
+<http://xmlns.com/foaf/0.1/tipjar> rdf:type owl:ObjectProperty ;
+                                   rdfs:comment "A tipjar document for this agent, describing means for payment and reward." ;
+                                  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/page>;
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                   vs:term_status "testing" ;
+                                   rdfs:label "tipjar"@IRI-based; 
+                                   rdfs:label "tipjar"@iri-based; 
+                                   rdfs:label "tipjar"@en; 
+                                   rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                   rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 17------------------------- 
+<http://purl.org/db/nosql#store> rdf:type owl:ObjectProperty ;
+                                 rdfs:label "store"@IRI-based; 
+                                 rdfs:label "store"@iri-based; 
+                                 rdfs:label "Store"@en; 
+                                 rdfs:label "Store"@en; 
+                                 rdfs:range undefined . 
+#  --------------------------- Property 18------------------------- 
+<http://xmlns.com/foaf/0.1/aimChatID> rdf:type owl:DatatypeProperty ;
+                                      rdfs:comment "An AIM chat ID" ;
+                                      rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                      vs:term_status "testing" ;
+                                      rdfs:label "aimChatID"@IRI-based; 
+                                      rdfs:label "aimChatID"@iri-based; 
+                                      rdfs:label "AIM chat ID"@en; 
+                                      rdfs:range rdfs:Literal . 
+#  --------------------------- Property 19------------------------- 
+<http://xmlns.com/foaf/0.1/skypeID> rdf:type owl:DatatypeProperty ;
+                                    rdfs:comment "A Skype ID" ;
+                                    rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                    vs:term_status "testing" ;
+                                    rdfs:label "skypeID"@IRI-based; 
+                                    rdfs:label "skypeID"@iri-based; 
+                                    rdfs:label "Skype ID"@en; 
+                                    rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                    rdfs:range rdfs:Literal . 
+#  --------------------------- Property 20------------------------- 
+<http://xmlns.com/foaf/0.1/topic> rdf:type owl:ObjectProperty; 
+                                  owl:inverseOf <http://xmlns.com/foaf/0.1/page> ;
+                                  rdfs:comment "A topic of some page or document." ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                  vs:term_status "testing" ;
+                                  rdfs:label "topic"@IRI-based; 
+                                  rdfs:label "topic"@iri-based; 
+                                  rdfs:label "topic"@en; 
+                                  rdfs:domain <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 21------------------------- 
+<http://xmlns.com/foaf/0.1/img> rdf:type owl:ObjectProperty ;
+                                rdfs:comment "An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage)." ;
+                               rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/depiction>;
+                                rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                vs:term_status "testing" ;
+                                rdfs:label "img"@IRI-based; 
+                                rdfs:label "img"@iri-based; 
+                                rdfs:label "image"@en; 
+                                rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                rdfs:range <http://xmlns.com/foaf/0.1/Image> . 
+#  --------------------------- Property 22------------------------- 
+<http://xmlns.com/foaf/0.1/sha1> rdf:type owl:DatatypeProperty ;
+                                 rdfs:comment "A sha1sum hash, in hex." ;
+                                 rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                 vs:term_status "unstable" ;
+                                 rdfs:label "sha1"@IRI-based; 
+                                 rdfs:label "sha1"@iri-based; 
+                                 rdfs:label "sha1sum (hex)"@en; 
+                                 rdfs:domain <http://schema.org/CreativeWork>;
+                                 rdfs:range rdfs:Literal . 
+#  --------------------------- Property 23------------------------- 
+<http://xmlns.com/foaf/0.1/firstName> rdf:type owl:DatatypeProperty ;
+                                      rdfs:comment "The first name of a person." ;
+                                      rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                      vs:term_status "testing" ;
+                                      rdfs:label "firstName"@IRI-based; 
+                                      rdfs:label "firstName"@iri-based; 
+                                      rdfs:label "firstName"@en; 
+                                      rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                      rdfs:range rdfs:Literal . 
+#  --------------------------- Property 24------------------------- 
+<http://xmlns.com/foaf/0.1/made> rdf:type owl:ObjectProperty; 
+                                 owl:inverseOf <http://xmlns.com/foaf/0.1/maker> ;
+                                 rdfs:comment "Something that was made by this agent." ;
+                                 rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                 vs:term_status "stable" ;
+                                 rdfs:label "made"@IRI-based; 
+                                 rdfs:label "made"@iri-based; 
+                                 rdfs:label "made"@en; 
+                                 rdfs:domain <http://purl.org/dc/terms/Agent> . 
+#  --------------------------- Property 25------------------------- 
+<http://xmlns.com/foaf/0.1/familyName> rdf:type owl:DatatypeProperty ;
+                                       rdfs:comment "The family name of some person." ;
+                                       rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                       vs:term_status "testing" ;
+                                       rdfs:label "familyName"@IRI-based; 
+                                       rdfs:label "familyName"@iri-based; 
+                                       rdfs:label "familyName"@en; 
+                                       rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                       rdfs:range rdfs:Literal . 
+#  --------------------------- Property 26------------------------- 
+<http://purl.org/db/nosql#hasAttribute> rdf:type owl:ObjectProperty ;
+                                        rdfs:comment "An entity in a database consists of a set of attributes." ;
+                                        rdfs:label "hasAttribute"@IRI-based; 
+                                        rdfs:label "hasAttribute"@iri-based; 
+                                        rdfs:domain <http://purl.org/db/nosql#Entity>;
+                                        rdfs:range <http://purl.org/db/nosql#Attribute> . 
+#  --------------------------- Property 27------------------------- 
+<http://xmlns.com/foaf/0.1/plan> rdf:type owl:DatatypeProperty ;
+                                 rdfs:comment "A .plan comment, in the tradition of finger and '.plan' files." ;
+                                 rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                 vs:term_status "testing" ;
+                                 rdfs:label "plan"@IRI-based; 
+                                 rdfs:label "plan"@iri-based; 
+                                 rdfs:label "plan"@en; 
+                                 rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                 rdfs:range rdfs:Literal . 
+#  --------------------------- Property 28------------------------- 
+<http://purl.org/db/nosql#hasTable> rdf:type owl:ObjectProperty ;
+                                    rdfs:comment "Certain NOSQL databases store data in tables." ;
+                                   rdfs:subPropertyOf <http://purl.org/db/nosql#hasEntity>;
+                                    rdfs:label "hasTable"@IRI-based; 
+                                    rdfs:label "hasTable"@iri-based; 
+                                    rdfs:domain <http://purl.org/db/nosql#NonRelationalDB>;
+                                    rdfs:range <http://purl.org/db/nosql#Table> . 
+#  --------------------------- Property 29------------------------- 
+<http://xmlns.com/foaf/0.1/myersBriggs> rdf:type owl:DatatypeProperty ;
+                                        rdfs:comment "A Myers Briggs (MBTI) personality classification." ;
+                                        rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                        vs:term_status "testing" ;
+                                        rdfs:label "myersBriggs"@IRI-based; 
+                                        rdfs:label "myersBriggs"@iri-based; 
+                                        rdfs:label "myersBriggs"@en; 
+                                        rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                        rdfs:range rdfs:Literal . 
+#  --------------------------- Property 30------------------------- 
+<http://xmlns.com/foaf/0.1/publications> rdf:type owl:ObjectProperty ;
+                                         rdfs:comment "A link to the publications of this person." ;
+                                         rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                         vs:term_status "testing" ;
+                                         rdfs:label "publications"@IRI-based; 
+                                         rdfs:label "publications"@iri-based; 
+                                         rdfs:label "publications"@en; 
+                                         rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                         rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 31------------------------- 
+<http://xmlns.com/foaf/0.1/interest> rdf:type owl:ObjectProperty ;
+                                     rdfs:comment "A page about a topic of interest to this person." ;
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                     vs:term_status "testing" ;
+                                     rdfs:label "interest"@IRI-based; 
+                                     rdfs:label "interest"@iri-based; 
+                                     rdfs:label "interest"@en; 
+                                     rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                     rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 32------------------------- 
+<http://xmlns.com/foaf/0.1/mbox_sha1sum> rdf:type owl:DatatypeProperty ;
+                                         rdfs:comment "The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the  first owner of the mailbox." ;
+                                         rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                         vs:term_status "testing" ;
+                                         rdfs:label "mbox_sha1sum"@IRI-based; 
+                                         rdfs:label "mbox_sha1sum"@iri-based; 
+                                         rdfs:label "sha1sum of a personal mailbox URI name"@en; 
+                                         rdfs:range rdfs:Literal . 
+#  --------------------------- Property 33------------------------- 
+<http://xmlns.com/foaf/0.1/nick> rdf:type owl:DatatypeProperty ;
+                                 rdfs:comment "A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames)." ;
+                                 rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                 vs:term_status "testing" ;
+                                 rdfs:label "nick"@IRI-based; 
+                                 rdfs:label "nick"@iri-based; 
+                                 rdfs:label "nickname"@en; 
+                                 rdfs:range rdfs:Literal . 
+#  --------------------------- Property 34------------------------- 
+<http://xmlns.com/foaf/0.1/openid> rdf:type owl:ObjectProperty, owl:InverseFunctionalProperty ;
+                                   rdfs:comment "An OpenID for an Agent." ;
+                                  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/isPrimaryTopicOf>;
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                   vs:term_status "testing" ;
+                                   rdfs:label "openid"@IRI-based; 
+                                   rdfs:label "openid"@iri-based; 
+                                   rdfs:label "openid"@en; 
+                                   rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                   rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 35------------------------- 
+<http://xmlns.com/foaf/0.1/pastProject> rdf:type owl:ObjectProperty ;
+                                        rdfs:comment "A project this person has previously worked on." ;
+                                        rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                        vs:term_status "testing" ;
+                                        rdfs:label "pastProject"@IRI-based; 
+                                        rdfs:label "pastProject"@iri-based; 
+                                        rdfs:label "past project"@en; 
+                                        rdfs:domain <http://xmlns.com/foaf/0.1/Person> . 
+#  --------------------------- Property 36------------------------- 
+<http://purl.org/db/nosql#compliesWith> rdf:type owl:ObjectProperty ;
+                                        rdfs:comment "Tell which database is compliant with which properties, like relational database with ACID properties, or NOSQL wirh BASE properties." ;
+                                        rdfs:label "compliesWith"@IRI-based; 
+                                        rdfs:label "compliesWith"@iri-based; 
+                                        rdfs:domain undefined;
+                                        rdfs:range <http://purl.org/db/nosql#Properties> . 
+#  --------------------------- Property 37------------------------- 
+<http://xmlns.com/foaf/0.1/theme> rdf:type owl:ObjectProperty ;
+                                  rdfs:comment "A theme." ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                  vs:term_status "archaic" ;
+                                  rdfs:label "theme"@IRI-based; 
+                                  rdfs:label "theme"@iri-based; 
+                                  rdfs:label "theme"@en . 
+#  --------------------------- Property 38------------------------- 
+<http://xmlns.com/foaf/0.1/knows> rdf:type owl:ObjectProperty ;
+                                  rdfs:comment "A person known by this person (indicating some level of reciprocated interaction between the parties)." ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                  vs:term_status "stable" ;
+                                  rdfs:label "knows"@IRI-based; 
+                                  rdfs:label "knows"@iri-based; 
+                                  rdfs:label "knows"@en; 
+                                  rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                  rdfs:range <http://xmlns.com/foaf/0.1/Person> . 
+#  --------------------------- Property 39------------------------- 
+<http://xmlns.com/foaf/0.1/focus> rdf:type owl:ObjectProperty ;
+                                  rdfs:comment "The underlying or 'focal' entity associated with some SKOS-described concept." ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                  vs:term_status "testing" ;
+                                  rdfs:label "focus"@IRI-based; 
+                                  rdfs:label "focus"@iri-based; 
+                                  rdfs:label "focus"@en; 
+                                  rdfs:domain <http://www.w3.org/2004/02/skos/core#Concept> . 
+#  --------------------------- Property 40------------------------- 
+<http://xmlns.com/foaf/0.1/phone> rdf:type owl:ObjectProperty ;
+                                  rdfs:comment "A phone,  specified using fully qualified tel: URI scheme (refs: http://www.w3.org/Addressing/schemes.html#tel)." ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                  vs:term_status "testing" ;
+                                  rdfs:label "phone"@IRI-based; 
+                                  rdfs:label "phone"@iri-based; 
+                                  rdfs:label "phone"@en . 
+#  --------------------------- Property 41------------------------- 
+<http://xmlns.com/foaf/0.1/depicts> rdf:type owl:ObjectProperty; 
+                                    owl:inverseOf <http://xmlns.com/foaf/0.1/depiction> ;
+                                    rdfs:comment "A thing depicted in this representation." ;
+                                    rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                    vs:term_status "testing" ;
+                                    rdfs:label "depicts"@IRI-based; 
+                                    rdfs:label "depicts"@iri-based; 
+                                    rdfs:label "depicts"@en; 
+                                    rdfs:domain <http://xmlns.com/foaf/0.1/Image> . 
+#  --------------------------- Property 42------------------------- 
+<http://xmlns.com/foaf/0.1/geekcode> rdf:type owl:DatatypeProperty ;
+                                     rdfs:comment "A textual geekcode for this person, see http://www.geekcode.com/geek.html" ;
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                     vs:term_status "archaic" ;
+                                     rdfs:label "geekcode"@IRI-based; 
+                                     rdfs:label "geekcode"@iri-based; 
+                                     rdfs:label "geekcode"@en; 
+                                     rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                     rdfs:range rdfs:Literal . 
+#  --------------------------- Property 43------------------------- 
+<http://xmlns.com/foaf/0.1/primaryTopic> rdf:type owl:ObjectProperty, owl:FunctionalProperty; 
+                                         owl:inverseOf <http://xmlns.com/foaf/0.1/isPrimaryTopicOf> ;
+                                         rdfs:comment "The primary topic of some page or document." ;
+                                         rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                         vs:term_status "stable" ;
+                                         rdfs:label "primaryTopic"@IRI-based; 
+                                         rdfs:label "primaryTopic"@iri-based; 
+                                         rdfs:label "primary topic"@en; 
+                                         rdfs:domain <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 44------------------------- 
+<http://xmlns.com/foaf/0.1/gender> rdf:type owl:DatatypeProperty, owl:FunctionalProperty ;
+                                   rdfs:comment "The gender of this Agent (typically but not necessarily 'male' or 'female')." ;
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                   vs:term_status "testing" ;
+                                   rdfs:label "gender"@IRI-based; 
+                                   rdfs:label "gender"@iri-based; 
+                                   rdfs:label "gender"@en; 
+                                   rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                   rdfs:range rdfs:Literal . 
+#  --------------------------- Property 45------------------------- 
+<http://xmlns.com/foaf/0.1/schoolHomepage> rdf:type owl:ObjectProperty ;
+                                           rdfs:comment "A homepage of a school attended by the person." ;
+                                           rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                           vs:term_status "testing" ;
+                                           rdfs:label "schoolHomepage"@IRI-based; 
+                                           rdfs:label "schoolHomepage"@iri-based; 
+                                           rdfs:label "schoolHomepage"@en; 
+                                           rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                           rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 46------------------------- 
+<http://xmlns.com/foaf/0.1/lastName> rdf:type owl:DatatypeProperty ;
+                                     rdfs:comment "The last name of a person." ;
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                     vs:term_status "testing" ;
+                                     rdfs:label "lastName"@IRI-based; 
+                                     rdfs:label "lastName"@iri-based; 
+                                     rdfs:label "lastName"@en; 
+                                     rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                     rdfs:range rdfs:Literal . 
+#  --------------------------- Property 47------------------------- 
+<http://purl.org/db/nosql#hasPrimaryKey> rdf:type owl:ObjectProperty ;
+                                         rdfs:comment "Sets the primary key of an entity of a database." ;
+                                         rdfs:label "hasPrimaryKey"@IRI-based; 
+                                         rdfs:label "hasPrimaryKey"@iri-based; 
+                                         rdfs:domain <http://purl.org/db/nosql#Entity>;
+                                         rdfs:range <http://purl.org/db/nosql#PrimaryKey> . 
+#  --------------------------- Property 48------------------------- 
+<http://xmlns.com/foaf/0.1/status> rdf:type owl:DatatypeProperty ;
+                                   rdfs:comment "A string expressing what the user is happy for the general public (normally) to know about their current activity." ;
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                   vs:term_status "unstable" ;
+                                   rdfs:label "status"@IRI-based; 
+                                   rdfs:label "status"@iri-based; 
+                                   rdfs:label "status"@en; 
+                                   rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                   rdfs:range rdfs:Literal . 
+#  --------------------------- Property 49------------------------- 
+<http://purl.org/db/nosql#hasData_Bucket> rdf:type owl:ObjectProperty ;
+                                          rdfs:comment "Special to CouchDB databases, a CouchDB has a number of data buckets." ;
+                                         rdfs:subPropertyOf <http://purl.org/db/nosql#hasEntity>;
+                                          rdfs:label "hasData_Bucket"@IRI-based; 
+                                          rdfs:label "hasData_Bucket"@iri-based; 
+                                          rdfs:domain <http://purl.org/db/nosql#CouchDB>;
+                                          rdfs:range <http://purl.org/db/nosql#Data_Bucket> . 
+#  --------------------------- Property 50------------------------- 
+<http://xmlns.com/foaf/0.1/accountServiceHomepage> rdf:type owl:ObjectProperty ;
+                                                   rdfs:comment "Indicates a homepage of the service provide for this online account." ;
+                                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                                   vs:term_status "testing" ;
+                                                   rdfs:label "accountServiceHomepage"@IRI-based; 
+                                                   rdfs:label "accountServiceHomepage"@iri-based; 
+                                                   rdfs:label "account service homepage"@en; 
+                                                   rdfs:domain <http://xmlns.com/foaf/0.1/OnlineAccount>;
+                                                   rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 51------------------------- 
+<http://xmlns.com/foaf/0.1/logo> rdf:type owl:ObjectProperty, owl:InverseFunctionalProperty ;
+                                 rdfs:comment "A logo representing some thing." ;
+                                 rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                 vs:term_status "testing" ;
+                                 rdfs:label "logo"@IRI-based; 
+                                 rdfs:label "logo"@iri-based; 
+                                 rdfs:label "logo"@en . 
+#  --------------------------- Property 52------------------------- 
+<http://purl.org/db/nosql#hasEntity> rdf:type owl:ObjectProperty ;
+                                     rdfs:comment "A database contails one or more entities." ;
+                                     rdfs:label "hasEntity"@IRI-based; 
+                                     rdfs:label "hasEntity"@iri-based; 
+                                     rdfs:domain undefined;
+                                     rdfs:range <http://purl.org/db/nosql#Entity> . 
+#  --------------------------- Property 53------------------------- 
+<http://xmlns.com/foaf/0.1/fundedBy> rdf:type owl:ObjectProperty ;
+                                     rdfs:comment "An organization funding a project or person." ;
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                     vs:term_status "archaic" ;
+                                     rdfs:label "fundedBy"@IRI-based; 
+                                     rdfs:label "fundedBy"@iri-based; 
+                                     rdfs:label "funded by"@en . 
+#  --------------------------- Property 54------------------------- 
+<http://xmlns.com/foaf/0.1/accountName> rdf:type owl:DatatypeProperty ;
+                                        rdfs:comment "Indicates the name (identifier) associated with this online account." ;
+                                        rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                        vs:term_status "testing" ;
+                                        rdfs:label "accountName"@IRI-based; 
+                                        rdfs:label "accountName"@iri-based; 
+                                        rdfs:label "account name"@en; 
+                                        rdfs:domain <http://xmlns.com/foaf/0.1/OnlineAccount>;
+                                        rdfs:range rdfs:Literal . 
+#  --------------------------- Property 55------------------------- 
+<http://xmlns.com/foaf/0.1/jabberID> rdf:type owl:DatatypeProperty ;
+                                     rdfs:comment "A jabber ID for something." ;
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                     vs:term_status "testing" ;
+                                     rdfs:label "jabberID"@IRI-based; 
+                                     rdfs:label "jabberID"@iri-based; 
+                                     rdfs:label "jabber ID"@en; 
+                                     rdfs:range rdfs:Literal . 
+#  --------------------------- Property 56------------------------- 
+<http://xmlns.com/foaf/0.1/age> rdf:type owl:DatatypeProperty, owl:FunctionalProperty ;
+                                rdfs:comment "The age in years of some agent." ;
+                                rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                vs:term_status "unstable" ;
+                                rdfs:label "age"@IRI-based; 
+                                rdfs:label "age"@iri-based; 
+                                rdfs:label "age"@en; 
+                                rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                rdfs:range rdfs:Literal . 
+#  --------------------------- Property 57------------------------- 
+<http://xmlns.com/foaf/0.1/homepage> rdf:type owl:ObjectProperty, owl:InverseFunctionalProperty ;
+                                     rdfs:comment "A homepage for some thing." ;
+                                    rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/isPrimaryTopicOf>;
+                                    rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/page>;
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                     vs:term_status "stable" ;
+                                     rdfs:label "homepage"@IRI-based; 
+                                     rdfs:label "homepage"@iri-based; 
+                                     rdfs:label "homepage"@en; 
+                                     rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 58------------------------- 
+<http://xmlns.com/foaf/0.1/msnChatID> rdf:type owl:DatatypeProperty ;
+                                      rdfs:comment "An MSN chat ID" ;
+                                      rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                      vs:term_status "testing" ;
+                                      rdfs:label "msnChatID"@IRI-based; 
+                                      rdfs:label "msnChatID"@iri-based; 
+                                      rdfs:label "MSN chat ID"@en; 
+                                      rdfs:range rdfs:Literal . 
+#  --------------------------- Property 59------------------------- 
+<http://purl.org/db/nosql#runsIn> rdf:type owl:ObjectProperty ;
+                                  rdfs:comment "A distributed database can run in a cluster." ;
+                                  rdfs:label "runsIn"@IRI-based; 
+                                  rdfs:label "runsIn"@iri-based; 
+                                  rdfs:domain undefined;
+                                  rdfs:range <http://purl.org/db/nosql#Cluster> . 
+#  --------------------------- Property 60------------------------- 
+<http://xmlns.com/foaf/0.1/topic_interest> rdf:type owl:ObjectProperty ;
+                                           rdfs:comment "A thing of interest to this person." ;
+                                           rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                           vs:term_status "testing" ;
+                                           rdfs:label "topic_interest"@IRI-based; 
+                                           rdfs:label "topic_interest"@iri-based; 
+                                           rdfs:label "topic_interest"@en; 
+                                           rdfs:domain <http://purl.org/dc/terms/Agent> . 
+#  --------------------------- Property 61------------------------- 
+<http://xmlns.com/foaf/0.1/currentProject> rdf:type owl:ObjectProperty ;
+                                           rdfs:comment "A current project this person works on." ;
+                                           rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                           vs:term_status "testing" ;
+                                           rdfs:label "currentProject"@IRI-based; 
+                                           rdfs:label "currentProject"@iri-based; 
+                                           rdfs:label "current project"@en; 
+                                           rdfs:domain <http://xmlns.com/foaf/0.1/Person> . 
+#  --------------------------- Property 62------------------------- 
+<http://xmlns.com/foaf/0.1/holdsAccount> rdf:type owl:ObjectProperty ;
+                                         rdfs:comment "Indicates an account held by this agent." ;
+                                         rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                         vs:term_status "archaic" ;
+                                         rdfs:label "holdsAccount"@IRI-based; 
+                                         rdfs:label "holdsAccount"@iri-based; 
+                                         rdfs:label "account"@en; 
+                                         rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                         rdfs:range <http://xmlns.com/foaf/0.1/OnlineAccount> . 
+#  --------------------------- Property 63------------------------- 
+<http://xmlns.com/foaf/0.1/thumbnail> rdf:type owl:ObjectProperty ;
+                                      rdfs:comment "A derived thumbnail image." ;
+                                      rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                      vs:term_status "testing" ;
+                                      rdfs:label "thumbnail"@IRI-based; 
+                                      rdfs:label "thumbnail"@iri-based; 
+                                      rdfs:label "thumbnail"@en; 
+                                      rdfs:domain <http://xmlns.com/foaf/0.1/Image>;
+                                      rdfs:range <http://xmlns.com/foaf/0.1/Image> . 
+#  --------------------------- Property 64------------------------- 
+<http://xmlns.com/foaf/0.1/weblog> rdf:type owl:ObjectProperty, owl:InverseFunctionalProperty ;
+                                   rdfs:comment "A weblog of some thing (whether person, group, company etc.)." ;
+                                  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/page>;
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                   vs:term_status "stable" ;
+                                   rdfs:label "weblog"@IRI-based; 
+                                   rdfs:label "weblog"@iri-based; 
+                                   rdfs:label "weblog"@en; 
+                                   rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                   rdfs:range <http://schema.org/CreativeWork> . 
+#  --------------------------- Property 65------------------------- 
+<http://xmlns.com/foaf/0.1/birthday> rdf:type owl:DatatypeProperty, owl:FunctionalProperty ;
+                                     rdfs:comment "The birthday of this Agent, represented in mm-dd string form, eg. '12-31'." ;
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                     vs:term_status "unstable" ;
+                                     rdfs:label "birthday"@IRI-based; 
+                                     rdfs:label "birthday"@iri-based; 
+                                     rdfs:label "birthday"@en; 
+                                     rdfs:domain <http://purl.org/dc/terms/Agent>;
+                                     rdfs:range rdfs:Literal . 
+#  --------------------------- Property 66------------------------- 
+<http://xmlns.com/foaf/0.1/member> rdf:type owl:ObjectProperty ;
+                                   rdfs:comment "Indicates a member of a Group" ;
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                   vs:term_status "stable" ;
+                                   rdfs:label "member"@IRI-based; 
+                                   rdfs:label "member"@iri-based; 
+                                   rdfs:label "member"@en; 
+                                   rdfs:domain <http://xmlns.com/foaf/0.1/Group>;
+                                   rdfs:range <http://purl.org/dc/terms/Agent> . 
+#  --------------------------- Property 67------------------------- 
+<http://xmlns.com/foaf/0.1/mbox> rdf:type owl:ObjectProperty, owl:InverseFunctionalProperty ;
+                                 rdfs:comment "A  personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox." ;
+                                 rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                 vs:term_status "stable" ;
+                                 rdfs:label "mbox"@IRI-based; 
+                                 rdfs:label "mbox"@iri-based; 
+                                 rdfs:label "personal mailbox"@en; 
+                                 rdfs:domain <http://purl.org/dc/terms/Agent> . 
+#  --------------------------- Property 68------------------------- 
+<http://xmlns.com/foaf/0.1/surname> rdf:type owl:DatatypeProperty ;
+                                    rdfs:comment "The surname of some person." ;
+                                    rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                    vs:term_status "archaic" ;
+                                    rdfs:label "surname"@IRI-based; 
+                                    rdfs:label "surname"@iri-based; 
+                                    rdfs:label "Surname"@en; 
+                                    rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                    rdfs:range rdfs:Literal . 
+#  --------------------------- Property 69------------------------- 
+<http://purl.org/db/nosql#hasCollection> rdf:type owl:ObjectProperty ;
+                                         rdfs:comment "Special to MongoDB, data is stored in collections of documents." ;
+                                        rdfs:subPropertyOf <http://purl.org/db/nosql#hasEntity>;
+                                         rdfs:label "hasCollection"@IRI-based; 
+                                         rdfs:label "hasCollection"@iri-based; 
+                                         rdfs:domain <http://purl.org/db/nosql#MongoDB>;
+                                         rdfs:range <http://purl.org/db/nosql#Collection> . 
+#  --------------------------- Property 70------------------------- 
+<http://purl.org/db/nosql#viewIn> rdf:type owl:ObjectProperty ;
+                                  rdfs:label "viewIn"@IRI-based; 
+                                  rdfs:label "viewIn"@iri-based; 
+                                  rdfs:domain <http://purl.org/db/nosql#View>;
+                                  rdfs:range undefined . 
+#  --------------------------- Property 71------------------------- 
+<http://xmlns.com/foaf/0.1/maker> rdf:type owl:ObjectProperty; 
+                                  owl:inverseOf <http://xmlns.com/foaf/0.1/made> ;
+                                  rdfs:comment "An agent that  made this thing." ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                  vs:term_status "stable" ;
+                                  rdfs:label "maker"@IRI-based; 
+                                  rdfs:label "maker"@iri-based; 
+                                  rdfs:label "maker"@en; 
+                                  rdfs:range <http://purl.org/dc/terms/Agent> . 
+#  --------------------------- Property 72------------------------- 
+<http://xmlns.com/foaf/0.1/workplaceHomepage> rdf:type owl:ObjectProperty ;
+                                              rdfs:comment "A workplace homepage of some person; the homepage of an organization they work for." ;
+                                              rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                              vs:term_status "testing" ;
+                                              rdfs:label "workplaceHomepage"@IRI-based; 
+                                              rdfs:label "workplaceHomepage"@iri-based; 
+                                              rdfs:label "workplace homepage"@en; 
+                                              rdfs:domain <http://xmlns.com/foaf/0.1/Person>;
+                                              rdfs:range <http://schema.org/CreativeWork> . 
+###  Class Definitions (Number of Classes) 99 ###
+#  --------------------------- Class  0------------------------- 
+<http://purl.org/db/nosql#Druid> rdf:type owl:Class; 
+                                 rdfs:subClassOf <http://purl.org/db/nosql#Columnar> ;
+                                 rdfs:label "Druid"@IRI-based; 
+                                 rdfs:label "Druid"@iri-based . 
+#  --------------------------- Class  1------------------------- 
+<http://purl.org/db/nosql#Scylla> rdf:type owl:Class; 
+                                  rdfs:subClassOf <http://purl.org/db/nosql#Columnar> ;
+                                  rdfs:label "Scylla"@IRI-based; 
+                                  rdfs:label "Scylla"@iri-based . 
+#  --------------------------- Class  2------------------------- 
+<http://purl.org/db/nosql#c-treeACE> rdf:type owl:Class; 
+                                     rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                     rdfs:label "c-treeACE"@IRI-based; 
+                                     rdfs:label "c-treeACE"@iri-based . 
+#  --------------------------- Class  3------------------------- 
+<http://purl.org/db/nosql#Table> rdf:type owl:Class; 
+                                 rdfs:subClassOf <http://purl.org/db/nosql#Entity> ;
+                                 rdfs:label "Table"@IRI-based; 
+                                 rdfs:label "Table"@iri-based . 
+#  --------------------------- Class  4------------------------- 
+<http://purl.org/db/nosql#InfiniteGraph> rdf:type owl:Class; 
+                                         rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                         rdfs:label "InfiniteGraph"@IRI-based; 
+                                         rdfs:label "InfiniteGraph"@iri-based . 
+#  --------------------------- Class  5------------------------- 
+<http://purl.org/db/nosql#DynamoDB> rdf:type owl:Class; 
+                                    rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                    rdfs:label "DynamoDB"@IRI-based; 
+                                    rdfs:label "DynamoDB"@iri-based . 
+#  --------------------------- Class  6------------------------- 
+<http://purl.org/db/nosql#Cypher> rdf:type owl:Class; 
+                                  rdfs:comment "Query language used to intereact with a Neo4j database." ;
+                                  rdfs:subClassOf <http://purl.org/db/nosql#QueryLanguage> ;
+                                  rdfs:label "Cypher"@IRI-based; 
+                                  rdfs:label "Cypher"@iri-based . 
+#  --------------------------- Class  7------------------------- 
+<http://purl.org/db/nosql#Graph> rdf:type owl:Class; 
+                                 rdfs:comment "Graph store stores highly interconnected data, in form of graphs." ;
+                                 rdfs:subClassOf <http://purl.org/db/nosql#NonRelationalDB> ;
+                                 rdfs:label "Graph"@IRI-based; 
+                                 rdfs:label "Graph"@iri-based . 
+#  --------------------------- Class  8------------------------- 
+<http://purl.org/db/nosql#DSE_Graph> rdf:type owl:Class; 
+                                     rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                     rdfs:label "DSE_Graph"@IRI-based; 
+                                     rdfs:label "DSE_Graph"@iri-based . 
+#  --------------------------- Class  9------------------------- 
+<http://purl.org/db/nosql#Primary_key> rdf:type owl:Class; 
+                                       rdfs:subClassOf <http://purl.org/db/nosql#PrimaryKey> ;
+                                       rdfs:label "Primary_key"@IRI-based; 
+                                       rdfs:label "Primary_key"@iri-based . 
+#  --------------------------- Class  10------------------------- 
+<http://xmlns.com/foaf/0.1/Project> rdf:type owl:Class; 
+                                    rdfs:comment "A project (a collective endeavour of some kind)." ;
+                                    rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                    vs:term_status "testing" ;
+                                    owl:disjointWith <http://xmlns.com/foaf/0.1/Person> ;
+                                    rdfs:label "Project"@IRI-based; 
+                                    rdfs:label "Project"@iri-based; 
+                                    rdfs:label "Project"@en . 
+#  --------------------------- Class  11------------------------- 
+<http://purl.org/db/nosql#HBase> rdf:type owl:Class; 
+                                 rdfs:subClassOf <http://purl.org/db/nosql#Columnar> ;
+                                 rdfs:label "HBase"@IRI-based; 
+                                 rdfs:label "HBase"@iri-based . 
+#  --------------------------- Class  12------------------------- 
+<http://xmlns.com/foaf/0.1/PersonalProfileDocument> rdf:type owl:Class; 
+                                                    rdfs:comment "A personal profile RDF document." ;
+                                                    vs:term_status "testing" ;
+                                                    rdfs:subClassOf <http://schema.org/CreativeWork> ;
+                                                    rdfs:label "PersonalProfileDocument"@IRI-based; 
+                                                    rdfs:label "PersonalProfileDocument"@iri-based; 
+                                                    rdfs:label "PersonalProfileDocument"@en . 
+#  --------------------------- Class  13------------------------- 
+<http://purl.org/db/nosql#MaterializedView> rdf:type owl:Class; 
+                                            rdfs:subClassOf <http://purl.org/db/nosql#View> ;
+                                            rdfs:label "MaterializedView"@IRI-based; 
+                                            rdfs:label "MaterializedView"@iri-based . 
+#  --------------------------- Class  14------------------------- 
+<http://purl.org/db/nosql#KeyValue> rdf:type owl:Class; 
+                                    rdfs:comment "Key-value store stores data in form of long key,value maps." ;
+                                    rdfs:subClassOf <http://purl.org/db/nosql#NonRelationalDB> ;
+                                    rdfs:label "KeyValue"@IRI-based; 
+                                    rdfs:label "KeyValue"@iri-based . 
+#  --------------------------- Class  15------------------------- 
+<http://purl.org/db/nosql#NonRelationalDB> rdf:type owl:Class; 
+                                           owl:equivalentClass <http://purl.org/db/nosql#Store> ;
+                                           rdfs:comment "A non-relation database, is a database that is designed around other models than the relational model. Used interchangbly with NOSQL database or store." ;
+                                           rdfs:label "NonRelationalDB"@IRI-based; 
+                                           rdfs:label "NonRelationalDB"@iri-based . 
+#  --------------------------- Class  16------------------------- 
+<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> rdf:type owl:Class; 
+                                                       rdfs:label "SpatialThing"@IRI-based; 
+                                                       rdfs:label "SpatialThing"@iri-based; 
+                                                       rdfs:label "Spatial Thing"@en . 
+#  --------------------------- Class  17------------------------- 
+<http://purl.org/db/nosql#SimpleDB> rdf:type owl:Class; 
+                                    rdfs:subClassOf <http://purl.org/db/nosql#Columnar> ;
+                                    rdfs:label "SimpleDB"@IRI-based; 
+                                    rdfs:label "SimpleDB"@iri-based . 
+#  --------------------------- Class  18------------------------- 
+<http://purl.org/db/nosql#Columnar> rdf:type owl:Class; 
+                                    rdfs:comment "Columnar or column-based store organises data virtually around rows, but stores it physically by columns. It may allow to store rows of different schema in one same table. Edited by Rashikh123." ;
+                                    rdfs:subClassOf <http://purl.org/db/nosql#NonRelationalDB> ;
+                                    rdfs:label "Columnar_EditedByUser666"@en . 
+#  --------------------------- Class  19------------------------- 
+<http://purl.org/db/nosql#MongoDB> rdf:type owl:Class; 
+                                   rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                   rdfs:label "MongoDB"@IRI-based; 
+                                   rdfs:label "MongoDB"@iri-based; 
+                                   rdfs:label "MongoDB_EditingTextFromWebvowl"@en . 
+#  --------------------------- Class  20------------------------- 
+<http://purl.org/db/nosql#RavenDB> rdf:type owl:Class; 
+                                   rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                   rdfs:label "RavenDB"@IRI-based; 
+                                   rdfs:label "RavenDB"@iri-based . 
+#  --------------------------- Class  21------------------------- 
+<http://purl.org/db/nosql#MonetDB> rdf:type owl:Class; 
+                                   rdfs:subClassOf <http://purl.org/db/nosql#Columnar> ;
+                                   rdfs:label "MonetDB"@IRI-based; 
+                                   rdfs:label "MonetDB"@iri-based . 
+#  --------------------------- Class  22------------------------- 
+<http://purl.org/db/nosql#QueryLanguage> rdf:type owl:Class; 
+                                         rdfs:comment "A syntax of a query or dialect to interact with a database." ;
+                                         rdfs:label "QueryLanguage"@IRI-based; 
+                                         rdfs:label "QueryLanguage"@iri-based . 
+#  --------------------------- Class  23------------------------- 
+<http://purl.org/db/nosql#Scalaris> rdf:type owl:Class; 
+                                    rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                    rdfs:label "Scalaris"@IRI-based; 
+                                    rdfs:label "Scalaris"@iri-based . 
+#  --------------------------- Class  24------------------------- 
+<http://purl.org/db/nosql#Data_Bucket> rdf:type owl:Class; 
+                                       rdfs:subClassOf <http://purl.org/db/nosql#Entity> ;
+                                       rdfs:label "Data_Bucket"@IRI-based; 
+                                       rdfs:label "Data_Bucket"@iri-based . 
+#  --------------------------- Class  25------------------------- 
+<http://purl.org/db/nosql#Index> rdf:type owl:Class; 
+                                 rdfs:label "Index"@IRI-based; 
+                                 rdfs:label "Index"@iri-based . 
+#  --------------------------- Class  26------------------------- 
+<http://xmlns.com/foaf/0.1/OnlineAccount> rdf:type owl:Class; 
+                                          rdfs:comment "An online account." ;
+                                          rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                          vs:term_status "testing" ;
+                                          rdfs:label "OnlineAccount"@IRI-based; 
+                                          rdfs:label "OnlineAccount"@iri-based; 
+                                          rdfs:label "Online Account"@en . 
+#  --------------------------- Class  27------------------------- 
+<http://purl.org/db/nosql#Cosmos_DB> rdf:type owl:Class; 
+                                     rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                     rdfs:subClassOf <http://purl.org/db/nosql#Multi-model> ;
+                                     rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                     rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                     rdfs:subClassOf <http://purl.org/db/nosql#Columnar> ;
+                                     rdfs:label "Cosmos_DB"@IRI-based; 
+                                     rdfs:label "Cosmos_DB"@iri-based . 
+#  --------------------------- Class  28------------------------- 
+<http://purl.org/dc/terms/Agent> rdf:type owl:Class; 
+                                 owl:equivalentClass <http://xmlns.com/foaf/0.1/Agent> ;
+                                 rdfs:label "Agent"@IRI-based . 
+#  --------------------------- Class  29------------------------- 
+<http://purl.org/db/nosql#CouchDB> rdf:type owl:Class; 
+                                   rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                   rdfs:label "CouchDB"@IRI-based; 
+                                   rdfs:label "CouchDB"@iri-based; 
+                                   rdfs:label "CouchDBTestEdit"@en . 
+#  --------------------------- Class  30------------------------- 
+<http://purl.org/db/nosql#ACID> rdf:type owl:Class; 
+                                rdfs:comment "In a database, ACID are four properties: Atomicity, Consistency, Isolation, and Durability, that ensure that transactions, failed or succeded, leave the data in a valid and consistent state." ;
+                                rdfs:subClassOf <http://purl.org/db/nosql#Properties> ;
+                                owl:disjointWith <http://purl.org/db/nosql#BASE> ;
+                                rdfs:label "ACID"@IRI-based; 
+                                rdfs:label "ACID"@iri-based . 
+#  --------------------------- Class  31------------------------- 
+<http://purl.org/db/nosql#Cloudant> rdf:type owl:Class; 
+                                    rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                    rdfs:label "Cloudant"@IRI-based; 
+                                    rdfs:label "Cloudant"@iri-based . 
+#  --------------------------- Class  32------------------------- 
+<http://purl.org/db/nosql#Voldemort> rdf:type owl:Class; 
+                                     rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                     rdfs:label "Voldemort"@IRI-based; 
+                                     rdfs:label "Voldemort"@iri-based . 
+#  --------------------------- Class  33------------------------- 
+<http://purl.org/db/nosql#ArangoDB> rdf:type owl:Class; 
+                                    rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                    rdfs:subClassOf <http://purl.org/db/nosql#Multi-model> ;
+                                    rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                    rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                    rdfs:label "ArangoDB"@IRI-based; 
+                                    rdfs:label "ArangoDB"@iri-based . 
+#  --------------------------- Class  34------------------------- 
+<http://purl.org/db/nosql#Oracle_NoSQL_Database> rdf:type owl:Class; 
+                                                 rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                                 rdfs:label "Oracle_NoSQL_Database"@IRI-based; 
+                                                 rdfs:label "Oracle_NoSQL_Database"@iri-based . 
+#  --------------------------- Class  35------------------------- 
+<http://purl.org/db/nosql#Riak> rdf:type owl:Class; 
+                                rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                rdfs:label "Riak"@IRI-based; 
+                                rdfs:label "Riak"@iri-based . 
+#  --------------------------- Class  36------------------------- 
+<http://purl.org/db/nosql#DocumentDB> rdf:type owl:Class; 
+                                      rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                      rdfs:label "DocumentDB"@IRI-based; 
+                                      rdfs:label "DocumentDB"@iri-based . 
+#  --------------------------- Class  37------------------------- 
+<http://purl.org/db/nosql#View> rdf:type owl:Class; 
+                                rdfs:label "View"@IRI-based; 
+                                rdfs:label "View"@iri-based . 
+#  --------------------------- Class  38------------------------- 
+<http://purl.org/db/nosql#Properties> rdf:type owl:Class; 
+                                      rdfs:label "Properties"@IRI-based; 
+                                      rdfs:label "Properties"@iri-based . 
+#  --------------------------- Class  39------------------------- 
+<http://purl.org/db/nosql#BASE> rdf:type owl:Class; 
+                                rdfs:comment "A set of four properties: Basically Available, Soft state, Eventual consistency, that are commonly found in distributed NOSQL stores, as apposed to ACID in relational databases. Data added might not be ready for query everywhere, but will eventually be, and hence a system state is in constant change." ;
+                                rdfs:subClassOf <http://purl.org/db/nosql#Properties> ;
+                                rdfs:label "BASE"@IRI-based; 
+                                rdfs:label "BASE"@iri-based . 
+#  --------------------------- Class  40------------------------- 
+<http://purl.org/db/nosql#Sparksee> rdf:type owl:Class; 
+                                    rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                    rdfs:label "Sparksee"@IRI-based; 
+                                    rdfs:label "Sparksee"@iri-based . 
+#  --------------------------- Class  41------------------------- 
+rdfs:Class rdf:type owl:Class; 
+           rdfs:label "Class"@IRI-based; 
+           rdfs:label "Class"@iri-based . 
+#  --------------------------- Class  42------------------------- 
+<http://purl.org/db/nosql#SecondaryIndex> rdf:type owl:Class; 
+                                          rdfs:subClassOf <http://purl.org/db/nosql#Index> ;
+                                          rdfs:label "SecondaryIndex"@IRI-based; 
+                                          rdfs:label "SecondaryIndex"@iri-based . 
+#  --------------------------- Class  43------------------------- 
+<http://purl.org/db/nosql#N1QL> rdf:type owl:Class; 
+                                rdfs:comment "Query language (SQL-like) used to interact with a Couchbase database." ;
+                                rdfs:subClassOf <http://purl.org/db/nosql#QueryLanguage> ;
+                                rdfs:label "N1QL"@IRI-based; 
+                                rdfs:label "N1QL"@iri-based . 
+#  --------------------------- Class  44------------------------- 
+<http://xmlns.com/foaf/0.1/Image> rdf:type owl:Class; 
+                                  owl:equivalentClass <http://schema.org/ImageObject> ;
+                                  rdfs:comment "An image." ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                  vs:term_status "stable" ;
+                                  rdfs:subClassOf <http://schema.org/CreativeWork> ;
+                                  rdfs:label "Image"@IRI-based; 
+                                  rdfs:label "Image"@iri-based; 
+                                  rdfs:label "Image"@en . 
+#  --------------------------- Class  45------------------------- 
+<http://purl.org/db/nosql#Cassandra> rdf:type owl:Class; 
+                                     rdfs:subClassOf <http://purl.org/db/nosql#Columnar> ;
+                                     rdfs:label "Cassandra"@IRI-based; 
+                                     rdfs:label "Cassandra"@iri-based . 
+#  --------------------------- Class  46------------------------- 
+<http://purl.org/db/nosql#Cluster> rdf:type owl:Class; 
+                                   rdfs:comment "A group of physical or virtual computing machines." ;
+                                   rdfs:label "Cluster"@IRI-based; 
+                                   rdfs:label "Cluster"@iri-based . 
+#  --------------------------- Class  47------------------------- 
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class; 
+                                              rdfs:label "Concept"@IRI-based; 
+                                              rdfs:label "Concept"@iri-based; 
+                                              rdfs:label "Concept"@en . 
+#  --------------------------- Class  48------------------------- 
+<http://purl.org/db/nosql#Chouchbase> rdf:type owl:Class; 
+                                      rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                      rdfs:label "Chouchbase"@IRI-based; 
+                                      rdfs:label "Chouchbase"@iri-based . 
+#  --------------------------- Class  49------------------------- 
+<http://purl.org/db/nosql#Elassandra> rdf:type owl:Class; 
+                                      rdfs:subClassOf <http://purl.org/db/nosql#Columnar> ;
+                                      rdfs:label "Elassandra"@IRI-based; 
+                                      rdfs:label "Elassandra"@iri-based . 
+#  --------------------------- Class  50------------------------- 
+<http://purl.org/db/nosql#Tarantool> rdf:type owl:Class; 
+                                     rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                     rdfs:label "Tarantool"@IRI-based; 
+                                     rdfs:label "Tarantool"@iri-based . 
+#  --------------------------- Class  51------------------------- 
+<http://purl.org/db/nosql#JanusGraph> rdf:type owl:Class; 
+                                      rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                      rdfs:label "JanusGraph"@IRI-based; 
+                                      rdfs:label "JanusGraph"@iri-based . 
+#  --------------------------- Class  52------------------------- 
+<http://purl.org/db/nosql#Berkeley_DB> rdf:type owl:Class; 
+                                       rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                       rdfs:label "Berkeley_DB"@IRI-based; 
+                                       rdfs:label "Berkeley_DB"@iri-based . 
+#  --------------------------- Class  53------------------------- 
+<http://xmlns.com/foaf/0.1/Organization> rdf:type owl:Class; 
+                                         rdfs:comment "An organization." ;
+                                         rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                         vs:term_status "stable" ;
+                                         rdfs:subClassOf <http://purl.org/dc/terms/Agent> ;
+                                         owl:disjointWith <http://xmlns.com/foaf/0.1/Person> ;
+                                         owl:disjointWith <http://schema.org/CreativeWork> ;
+                                         rdfs:label "Organization"@IRI-based; 
+                                         rdfs:label "Organization"@iri-based; 
+                                         rdfs:label "Organization"@en . 
+#  --------------------------- Class  54------------------------- 
+<http://purl.org/db/nosql#Document> rdf:type owl:Class; 
+                                    rdfs:comment "Document store stores data in form of documents, like under JSOB/BSON formats." ;
+                                    rdfs:subClassOf <http://purl.org/db/nosql#NonRelationalDB> ;
+                                    rdfs:label "Document"@IRI-based; 
+                                    rdfs:label "Document"@iri-based . 
+#  --------------------------- Class  55------------------------- 
+<http://purl.org/db/nosql#MarkLogic> rdf:type owl:Class; 
+                                     rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                     rdfs:label "MarkLogic"@IRI-based; 
+                                     rdfs:label "MarkLogic"@iri-based . 
+#  --------------------------- Class  56------------------------- 
+<http://purl.org/db/nosql#Graph_Engine> rdf:type owl:Class; 
+                                        rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                        rdfs:label "Graph_Engine"@IRI-based; 
+                                        rdfs:label "Graph_Engine"@iri-based . 
+#  --------------------------- Class  57------------------------- 
+<http://schema.org/CreativeWork> rdf:type owl:Class; 
+                                 owl:equivalentClass <http://xmlns.com/foaf/0.1/Document> ;
+                                 owl:disjointWith <http://xmlns.com/foaf/0.1/Project> ;
+                                 rdfs:label "CreativeWork"@IRI-based . 
+#  --------------------------- Class  58------------------------- 
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class; 
+                                   owl:equivalentClass <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+                                   owl:equivalentClass <http://schema.org/Person> ;
+                                   rdfs:comment "A person." ;
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                   vs:term_status "stable" ;
+                                   rdfs:subClassOf <http://purl.org/dc/terms/Agent> ;
+                                   rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+                                   rdfs:label "Person"@IRI-based; 
+                                   rdfs:label "Person"@iri-based; 
+                                   rdfs:label "Person"@en . 
+#  --------------------------- Class  59------------------------- 
+<http://purl.org/db/nosql#OrientDB> rdf:type owl:Class; 
+                                    rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                    rdfs:subClassOf <http://purl.org/db/nosql#Multi-model> ;
+                                    rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                    rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
+                                    rdfs:label "OrientDB"@IRI-based; 
+                                    rdfs:label "OrientDB"@iri-based . 
+#  --------------------------- Class  60------------------------- 
+<http://purl.org/db/nosql#RethinkDB> rdf:type owl:Class; 
+                                     rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
+                                     rdfs:label "RethinkDB"@IRI-based; 
+                                     rdfs:label "RethinkDB"@iri-based . 
+#  --------------------------- Class  61------------------------- 
+<http://purl.org/db/nosql#Neo4j> rdf:type owl:Class; 
+                                 rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                 rdfs:label "Neo4j"@IRI-based; 
+                                 rdfs:label "Neo4j"@iri-based . 
+#  --------------------------- Class  62------------------------- 
+<http://purl.org/db/nosql#Collection> rdf:type owl:Class; 
+                                      rdfs:subClassOf <http://purl.org/db/nosql#Entity> ;
+                                      rdfs:label "Collection"@IRI-based; 
+                                      rdfs:label "Collection"@iri-based; 
+                                      rdfs:label "Collection"@en . 
+#  --------------------------- Class  63------------------------- 
+<http://purl.org/db/nosql#Attribute> rdf:type owl:Class; 
+                                     rdfs:comment "A term that groups all concepts used by different databases to characterize a particular datum stored in it, e.g., column in  Cassandra, field in MongoDB" ;
+                                     rdfs:label "Attribute"@IRI-based; 
+                                     rdfs:label "Attribute"@iri-based . 
+#  --------------------------- Class  64------------------------- 
+<http://purl.org/db/nosql#Dgraph> rdf:type owl:Class; 
+                                  rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
+                                  rdfs:label "Dgraph"@IRI-based; 
+                                  rdfs:label "Dgraph"@iri-based . 
+#  --------------------------- Class  65------------------------- 
+undefined rdf:type owl:Class; 
+WHYEMPTYNAME? rdfs:subClassOf [ rdf:type owl:Class ; 
+WHYEMPTYNAME?WHYEMPTYNAME? owl:unionOf ( WHYEMPTYNAME?WHYEMPTYNAME?WHYEMPTYNAME?<http://purl.org/db/nosql#NonRelationalDB> 
+) ;
+WHYEMPTYNAME? rdfs:label "undefined"@en . 
