@@ -292,7 +292,7 @@
 <http://purl.org/db/nosql#MongoDB> rdf:type owl:Class; 
                                    rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
                                    rdfs:label "MongoDB"@IRI-based; 
-                                   rdfs:label "MongoDB"@iri-based . 
+                                   rdfs:label "MongoDB"@iri-based;
                                    rdfs:label "MongoKabir103"@en . 
 #  --------------------------- Class  36-------------------------
 <http://purl.org/db/nosql#Kudu> rdf:type owl:Class; 
