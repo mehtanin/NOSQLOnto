@@ -285,15 +285,15 @@
                                                 rdfs:label "GlobalSecondaryIndex"@iri-based . 
 #  --------------------------- Class  34------------------------- 
 <http://purl.org/db/nosql#Columnar> rdf:type owl:Class; 
-                                    rdfs:comment "Columnar or column-based store organises data virtually around rows, but stores it physically by columns. It may allow to store rows of different schema in one same table.Kabir103" ;
+                                    rdfs:comment "Columnar or column-based store organises data virtually around rows, but stores it physically by columns. It may allow to store rows of different schema in one same table.Kabir111" ;
                                     rdfs:subClassOf <http://purl.org/db/nosql#NonRelationalDB> ;
-                                    rdfs:label "ColumnarKabir103"@en . 
+                                    rdfs:label "ColumnarKabir111"@en . 
 #  --------------------------- Class  35------------------------- 
 <http://purl.org/db/nosql#MongoDB> rdf:type owl:Class; 
                                    rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
                                    rdfs:label "MongoDB"@IRI-based; 
                                    rdfs:label "MongoDB"@iri-based;
-                                   rdfs:label "MongoKabir103"@en . 
+                                   rdfs:label "MongoKabir111"@en . 
 #  --------------------------- Class  36-------------------------
 <http://purl.org/db/nosql#Kudu> rdf:type owl:Class; 
                                 rdfs:subClassOf <http://purl.org/db/nosql#Columnar> ;
