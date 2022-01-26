@@ -365,7 +365,7 @@
                                    rdfs:label "CouchDB"@iri-based . 
 #  --------------------------- Class  49------------------------- 
 <http://purl.org/db/nosql#ACID> rdf:type owl:Class; 
-                                rdfs:comment "In a database, ACID are four properties: Atomicity, Consistency, Isolation, and Durability, that ensure that transactions, failed or succeded, leave the data in a valid and consistent state." ;
+                                rdfs:comment "In a database, ACID are four properties: Atomicity, Consistency, Isolation, and Durability, that ensure that transactions, failed or succeded, leave the data in a valid and consistent state.Kabir103" ;
                                 rdfs:subClassOf <http://purl.org/db/nosql#Properties> ;
                                 owl:disjointWith <http://purl.org/db/nosql#BASE> ;
                                 rdfs:label "ACID"@IRI-based; 
