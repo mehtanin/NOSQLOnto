@@ -287,6 +287,7 @@
 <http://purl.org/db/nosql#Columnar> rdf:type owl:Class; 
                                     rdfs:comment "Columnar or column-based store organises data virtually around rows, but stores it physically by columns. It may allow to store rows of different schema in one same table.Kabir456" ;
                                     rdfs:subClassOf <http://purl.org/db/nosql#NonRelationalDB> ;
+                                    rdfs:label "Columnar"@IRI-based; 
                                     rdfs:label "ColumnarWaleed"@en . 
 #  --------------------------- Class  35------------------------- 
 <http://purl.org/db/nosql#MongoDB> rdf:type owl:Class; 
