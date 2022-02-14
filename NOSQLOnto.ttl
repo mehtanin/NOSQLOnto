@@ -392,7 +392,7 @@
                                     rdfs:subClassOf <http://purl.org/db/nosql#KeyValue> ;
                                     rdfs:subClassOf <http://purl.org/db/nosql#Graph> ;
                                     rdfs:subClassOf <http://purl.org/db/nosql#Multi-model> ;
-                                    rdfs:label "ArangoDBTEst"@en . 
+                                    rdfs:label "ArangoDBTest"@en . 
 #  --------------------------- Class  54------------------------- 
 <http://purl.org/db/nosql#Cloud_Datastore> rdf:type owl:Class; 
                                            rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
