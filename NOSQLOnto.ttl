@@ -318,7 +318,7 @@
                                rdfs:label "HQL"@iri-based . 
 #  --------------------------- Class  40------------------------- 
 <http://purl.org/db/nosql#QueryLanguage> rdf:type owl:Class; 
-                                         rdfs:comment "A syntax of a query or dialect to interact with a database." ;
+                                         rdfs:comment "A syntax of a query or dialect to interact with a database. Kabir12" ;
                                          rdfs:label "QueryLanguage"@IRI-based; 
                                          rdfs:label "QueryLanguage"@iri-based . 
 #  --------------------------- Class  41------------------------- 
