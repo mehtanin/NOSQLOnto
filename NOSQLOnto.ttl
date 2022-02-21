@@ -9,10 +9,7 @@
 @prefix xsd: 		<http://www.w3.org/2001/XMLSchema#> .
 @prefix dc: 		<http://purl.org/dc/elements/1.1/#> .
 @prefix xml: 		<http://www.w3.org/XML/1998/namespace> .
-@prefix wdt: 		<http://www.wikidata.org/prop/direct/> .
-@prefix ex: 		<http://example.org/> .
 @prefix : 		<http://purl.org/db/nosql> .
-@prefix wd: 		<http://www.wikidata.org/entity/> .
 @base 			<http://purl.org/db/nosql> .
 
 <http://purl.org/db/nosql> rdf:type owl:Ontology ;
@@ -291,7 +288,7 @@
 <http://purl.org/db/nosql#Columnar> rdf:type owl:Class; 
                                     rdfs:comment "Columnar or column-based store organises data virtually around rows, but stores it physically by columns. It may allow to store rows of different schema in one same table.Kabir459" ;
                                     rdfs:subClassOf <http://purl.org/db/nosql#NonRelationalDB> ;
-                                    rdfs:label "ColumnarKabir990"@en . 
+                                    rdfs:label "ColumnarKabir476"@en . 
 #  --------------------------- Class  35------------------------- 
 <http://purl.org/db/nosql#MongoDB> rdf:type owl:Class; 
                                    rdfs:subClassOf <http://purl.org/db/nosql#Document> ;
