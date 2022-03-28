@@ -15,7 +15,7 @@
 @prefix wd: 		<http://www.wikidata.org/entity/> .
 @base 			<http://purl.org/db/nosql> .
 
-<http://purl.org/db/nosql> rdf:type owl:Ontology ;
+<http://purl.org/db/nosql> rdf:type owl:Ontology 
                            dc:title "Vocabulary about NOSQL stores"@en; 
                            dc:description "A vocabulary about NOSQL stores, and their related concepts."@en; 
                            owl:versionInfo "0.1"@en;
