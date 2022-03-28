@@ -25,7 +25,7 @@
 ###  Property Definitions (Number of Property) 12 ###
 #  --------------------------- Property 0------------------------- 
 <http://purl.org/db/nosql#compliesWith> rdf:type owl:ObjectProperty ;
-                                        rdfs:comment "Tell which database is compliant with which properties, like relational database with ACID properties, or NOSQL wirh BASE properties." ;
+                                        rdfs:comment "Tell which databases is compliant with which properties, like relational database with ACID properties, or NOSQL wirh BASE properties." ;
                                         rdfs:label "compliesWith"@IRI-based; 
                                         rdfs:label "compliesWith"@iri-based; 
                                         rdfs:domain <http://purl.org/db/nosql#NonRelationalDB>;
