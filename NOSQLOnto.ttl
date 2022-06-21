@@ -23,6 +23,7 @@
 
 #################################################################
 
+
 ###  Property Definitions (Number of Property) 12 ###
 #  --------------------------- Property 0------------------------- 
 <http://purl.org/db/nosql#compliesWith> rdf:type owl:ObjectProperty ;
