@@ -20,6 +20,7 @@
                            dc:description "A vocabulary about NOSQL stores, and their related concepts."@en; 
                            owl:versionInfo "0.1"@en;
                            dc:creator "http://mohamednadjibmami.com/me" . 
+
 #################################################################
 
 ###  Property Definitions (Number of Property) 12 ###
