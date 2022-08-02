@@ -1,0 +1,28 @@
+@prefix edu: <https://schema.edu.ee/> .
+@prefix lsc: <http://linkedscience.org/lsc/> .
+@prefix transit: <http://vocab.org/transit/terms/> .
+
+<http://example.com/Abigail%20Stevens> a transit:RouteStop;
+  lsc:tests "#b5c635";
+  transit:routeStop "Kujawsko-pomorskie";
+  edu:testKoosneb "quam.a.felis@google.ca" .
+
+<http://example.com/Erin%20Riggs> a transit:RouteStop;
+  lsc:tests "#b71f1d";
+  transit:routeStop "Alajuela";
+  edu:testKoosneb "magna.et.ipsum@google.net" .
+
+<http://example.com/Hannah%20Carlson> a transit:RouteStop;
+  lsc:tests "#bf4c13";
+  transit:routeStop "Alabama";
+  edu:testKoosneb "fringilla.euismod@aol.edu" .
+
+<http://example.com/Jack%20Gonzalez> a transit:RouteStop;
+  lsc:tests "#b4d345";
+  transit:routeStop "Hatay";
+  edu:testKoosneb "magna.malesuada.vel@protonmail.ca" .
+
+<http://example.com/Keiko%20Beasley> a transit:RouteStop;
+  lsc:tests "#53f4c1";
+  transit:routeStop "Bauchi";
+  edu:testKoosneb "integer.tincidunt@google.net" .
