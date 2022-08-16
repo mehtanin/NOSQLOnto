@@ -1,0 +1,652 @@
+@prefix :          <https://w3id.org/i40/rami#> .
+@prefix DUL:       <http://www.loa-cnr.it/ontologies/DUL.owl#> .
+@prefix aas:       <https://admin-shell.io/aas/3/0/RC01/> .
+@prefix ai:        <http://www.ai4eu.eu/ontologies/core#> .
+@prefix cat:       <http://w3id.org/mobids/data-categories#> .
+@prefix catd:      <http://w3id.org/mobids/data-categories-detail#> .
+@prefix cso:       <https://cso.kmi.open.ac.uk/topics/> .
+@prefix dash:      <http://datashapes.org/dash#> .
+@prefix dbpedia:   <http://dbpedia.org/ontology/> .
+@prefix dc:        <http://purl.org/dc/elements/1.1/> .
+@prefix dcat:      <http://www.w3.org/ns/dcat#> .
+@prefix dct:       <http://purl.org/dc/terms/> .
+@prefix dcterms:   <http://purl.org/dc/terms/> .
+@prefix dul:       <http://www.loa-cnr.it/ontologies/DUL.owl#> .
+@prefix edu:       <https://schema.edu.ee/> .
+@prefix foaf:      <http://xmlns.com/foaf/spec/> .
+@prefix geo:       <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix grddl:     <http://www.w3.org/2003/g/data-view#> .
+@prefix ids:       <https://w3id.org/idsa/core#> .
+@prefix idsm:      <https://w3id.org/idsa/metamodel/> .
+@prefix iec61360:  <https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0/RC01/> .
+@prefix lgdo:      <http://linkedgeodata.org/ontology/> .
+@prefix lsc:       <http://linkedscience.org/lsc/> .
+@prefix mobids:    <http://w3id.org/mobids#> .
+@prefix obda:      <https://w3id.org/obda/vocabulary#> .
+@prefix om:        <http://www.wurvoc.org/vocabularies/om-1.8/> .
+@prefix owl:       <http://www.w3.org/2002/07/owl#> .
+@prefix phys_unit: <https://admin-shell.io/DataSpecificationTemplates/DataSpecificationPhysicalUnit/3/0/RC01/> .
+@prefix plo:       <http://purl.org/net/> .
+@prefix prov:      <http://www.w3.org/ns/prov#> .
+@prefix rami:      <https://w3id.org/i40/rami#> .
+@prefix rdf:       <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:    <http://schema.org/> .
+@prefix sh:        <http://www.w3.org/ns/shacl#> .
+@prefix sim:       <http://purl.org/ontology/similarity/> .
+@prefix skos:      <http://www.w3.org/2004/02/skos/core#> .
+@prefix ssn:       <http://purl.oclc.org/NET/ssnx/ssn#> .
+@prefix sto:       <https://w3id.org/i40/sto#> .
+@prefix transit:   <http://vocab.org/transit/terms/> .
+@prefix vann:      <http://purl.org/vocab/vann/> .
+@prefix vcard:     <http://www.w3.org/2006/vcard/ns#> .
+@prefix void:      <http://rdfs.org/ns/void#> .
+@prefix xml:       <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd:       <http://www.w3.org/2001/XMLSchema#> .
+
+rami:SensorMeasurementData
+        rdf:type      owl:Class ;
+        rdfs:comment  "Data measured by a sensor in this category"@en ;
+        rdfs:label    "Sensor Data"@en .
+
+rami:subModelID  rdf:type   owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:comment        "Unique Identification for a Submodel"@en ;
+        rdfs:domain         rami:Submodel ;
+        rdfs:label          "sub Model Id"@en ;
+        rdfs:range          xsd:string ;
+        rdfs:subPropertyOf  dcterms:identifier .
+
+rami:Submodel  rdf:type  owl:Class ;
+        rdfs:comment  "Describe the different types of Data related to the I4.0 Asset"@en ;
+        rdfs:label    "Submodel"@en .
+
+dcterms:identifier  rdf:type  owl:DatatypeProperty , owl:AnnotationProperty ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dc:identifier .
+
+skos:note  rdf:type  owl:AnnotationProperty .
+
+dc:publisher  rdf:type  owl:AnnotationProperty .
+
+rami:Value  rdf:type  owl:Class ;
+        rdfs:comment  "Current value that can be specified through an instanced submodel (for \ninstance in station 2) or through the asset, for example."@en ;
+        rdfs:label    "Value"@en .
+
+rami:contributes  rdf:type  owl:ObjectProperty ;
+        rdfs:domain      rami:Submodel ;
+        rdfs:range       prov:Agent ;
+        skos:definition  "Agent(Person or Software) that contributes to the Entity/Object related data. It correspond to the Contributor concept of OMM"@en ;
+        skos:prefLabel   "has Type Description"@en .
+
+prov:Agent  rdf:type  owl:Class .
+
+skos:definition  rdf:type  owl:AnnotationProperty .
+
+skos:prefLabel  rdf:type  owl:AnnotationProperty .
+
+rami:I4.0Component1  rdf:type   rami:I4.0Component , owl:NamedIndividual ;
+        rdfs:label              "I4.0 Component 2"@en ;
+        rami:containsAS         rami:AdminShell2 ;
+        rami:hasI40ComponentId  "I40C112" .
+
+rami:I4.0Component  rdf:type  owl:Class ;
+        rdfs:comment         "Globally uniquely identifiable participant with communication capability consisting of administration shell and asset within an I4.0 system. \nSource: Industrie 4.0 – Begriffe/Terms, VDI Statusreport Industrie 4.0 (April 2017)"@en ;
+        rdfs:isDefinedBy     "https://www.plattform-i40.de/I40/Navigation/EN/Service/Glossary/glossary.html" ;
+        rdfs:label           "I4.0Component"@en ;
+        owl:equivalentClass  [ rdf:type                     owl:Restriction ;
+                               owl:minQualifiedCardinality  "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass                  rami:AdminShell ;
+                               owl:onProperty               rami:containsAS
+                             ] .
+
+rami:containsAS  rdf:type  owl:ObjectProperty ;
+        rdfs:comment  "Points the I4.0 Component to the Administration Shell"@en ;
+        rdfs:domain   rami:I4.0Component ;
+        rdfs:label    "contains Admin Shell"@en ;
+        rdfs:range    rami:AdminShell .
+
+rami:AdminShell2  rdf:type    owl:NamedIndividual , rami:AdminShell ;
+        rdfs:label            "Admin Shell 2"@en ;
+        rami:hasAdminShellId  "AAS112" ;
+        rami:hasSubmodel      rami:EnergyEfficiency2 .
+
+rami:hasI40ComponentId
+        rdf:type            owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:comment        "Unique Identification of the Industry 4.0 component."@en ;
+        rdfs:domain         rami:I4.0Component ;
+        rdfs:label          "has I40 Component Id"@en ;
+        rdfs:range          xsd:string ;
+        rdfs:subPropertyOf  dcterms:identifier .
+
+dc:coverage  rdf:type  owl:AnnotationProperty .
+
+rami:Business  rdf:type  owl:NamedIndividual .
+
+rami:AdminShell  rdf:type  owl:Class ;
+        rdfs:label       "Admin Shell"@en ;
+        dc:source        "This definition comprises material from RAMI4.0."@en ;
+        skos:altLabel    "Administration Shell"@en , "Asset Administration Shell3344"@en ;
+        skos:definition  "Describes the Administration Shell for Assets, Products, Components, e.g. Machines"@en ;
+        skos:prefLabel   "Verwaltungsschale"@de .
+
+rami:TechnicalData1  rdf:type  owl:NamedIndividual ;
+        rdfs:label    "Technical Data 1"@en ;
+        rami:display  "Seven-segment display"@en .
+
+rami:display  rdf:type  owl:AnnotationProperty .
+
+skos:example  rdf:type  owl:AnnotationProperty .
+
+rami:usesStandard  rdf:type  owl:ObjectProperty ;
+        rdfs:comment  "Points to the standards describing the functions attached to the asset via the administration shell"@en ;
+        rdfs:label    "uses Standard"@en ;
+        rdfs:range    sto:Standard .
+
+sto:Standard  rdf:type    owl:Class ;
+        rdfs:isDefinedBy  <https://w3id.org/i40/sto/#Standard> ;
+        skos:definition   "Standards that are used to describe the actual I4.0 Asset. Defined in the STO ontology"@en ;
+        skos:prefLabel    "Standard"@en .
+
+rami:Structure  rdf:type  owl:Class ;
+        rdfs:subClassOf  rami:Submodel .
+
+rami:BrakingResistanceMs
+        rdf:type              owl:NamedIndividual , om:Measure ;
+        om:hasNumericalValue  "60.0"^^xsd:float ;
+        om:hasUnit            om:ohm .
+
+om:Measure  rdf:type  owl:Class .
+
+om:hasNumericalValue  rdf:type  owl:DatatypeProperty , owl:AnnotationProperty ;
+        rdfs:domain  om:Measure ;
+        rdfs:label   "has numerical value"@en .
+
+om:hasUnit  rdf:type  owl:ObjectProperty ;
+        rdfs:domain  om:Measure ;
+        rdfs:label   "has unit"@en ;
+        rdfs:range   om:Unit .
+
+om:ohm  rdf:type  owl:NamedIndividual .
+
+rami:hasSemanticExpression
+        rdf:type      owl:ObjectProperty ;
+        rdfs:comment  "Points to the Expression Semantic of the Submodels"@en ;
+        rdfs:domain   rami:Submodel ;
+        rdfs:label    "has Semantic Expression"@en ;
+        rdfs:range    rami:ExpressionSemantic .
+
+rami:ExpressionSemantic
+        rdf:type             owl:Class ;
+        rdfs:comment         "Specifies which role the property plays in an interaction, i.e. which \nexpression the provider of the property intends. \nValid values are: Requirement (for requests that are to be confirmed or rejected) Confirmations (for responses to requests that describe the capability of an asset) Measurement (if a measured or actual value is provided)"@en ;
+        rdfs:isDefinedBy     "https://www.zvei.org/fileadmin/user_upload/Presse_und_Medien/Publikationen/2017/April/Asset_Administration_Shell/ZVEI_WP_Verwaltungschale_Englisch_Download_03.04.17.pdf" ;
+        rdfs:label           "Expression Semantic"@en , "Ausprägungsaussage"@de ;
+        owl:equivalentClass  [ rdf:type   owl:Class ;
+                               owl:oneOf  ( rami:Confirmation rami:Measurement rami:Requirement )
+                             ] .
+
+rami:Reference  rdf:type  owl:Class .
+
+rami:Function  rdf:type  owl:NamedIndividual , rami:View ;
+        rdfs:comment  "Makes statements on the function pursuant to IEC 81346 and on the function of the asset components.\nIncludes skills such as interpretation (?), commissioning, calculation (?) or diagnosis functions of the asset.\nExamples: current imbalance detection ability"@en ;
+        rdfs:label    "Function"@en .
+
+rami:View  rdf:type          owl:Class ;
+        rdfs:comment         "Different views associated to the Administration Shell via the Submodels"@en ;
+        rdfs:isDefinedBy     "https://www.plattform-i40.de/I40/Redaktion/DE/Downloads/Publikation/hm-2018-trilaterale-coop.html"@de ;
+        rdfs:label           "View" , "Sicht"@de ;
+        owl:equivalentClass  [ rdf:type   owl:Class ;
+                               owl:oneOf  ( rami:BusinessView rami:Construction rami:Function rami:Location rami:Performance )
+                             ] .
+
+dcterms:hasVersion  rdf:type  owl:AnnotationProperty .
+
+skos:narrower  rdf:type  owl:AnnotationProperty .
+
+rami:energyEfficiencyValue
+        rdf:type      owl:ObjectProperty ;
+        rdfs:comment  "Points to the value of the Energy Efficiency comsuption."@en ;
+        rdfs:domain   rami:EnergyEfficiency ;
+        rdfs:label    "energy Efficiency Value"@en ;
+        rdfs:range    om:Measure .
+
+rami:EnergyEfficiency
+        rdf:type         owl:Class ;
+        rdfs:subClassOf  rami:Submodel .
+
+dc:identifier  rdf:type  owl:AnnotationProperty .
+
+om:Unit  rdf:type  owl:Class .
+
+dc:language  rdf:type  owl:AnnotationProperty .
+
+rami:hasAssetId  rdf:type   owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:comment        "Unique identification for the Asset."@en ;
+        rdfs:domain         rami:Asset ;
+        rdfs:label          "has Asset Id"@en ;
+        rdfs:range          xsd:string ;
+        rdfs:subPropertyOf  dcterms:identifier .
+
+rami:Asset  rdf:type     owl:Class , owl:NamedIndividual ;
+        skos:altLabel    "Entität"@de , "Entity"@en , "Object"@en ;
+        skos:definition  "Eindeutig identifizierbarer Gegenstand, der aufgrund seiner Bedeutung in der Informationswelt verwaltet wird"@de , "Clearly identifiable asset for the Administration Shell"@en ;
+        skos:note        "Objects may be known in the form of a type or of an instance. An object in the planning phase is known as a type"@en ;
+        skos:prefLabel   "Asset"@en .
+
+rami:Requirement  rdf:type  owl:NamedIndividual , rami:ExpressionSemantic ;
+        rdfs:comment  "For requests that are to be confirmed or rejected"@en ;
+        rdfs:label    "Requirement"@en .
+
+rami:hasData  rdf:type   owl:ObjectProperty ;
+        rdfs:domain      rami:AdminShell ;
+        rdfs:range       rami:Submodel ;
+        skos:definition  "Connects the AdminShell with the different types of Data for the Object/Entity"@en ;
+        skos:prefLabel   "has Data"@en .
+
+rami:Construction  rdf:type  owl:NamedIndividual , rami:View ;
+        rdfs:comment  "Applies to the constructive deployment of the asset for selection, design of building structure or assemblies ...\nContains a structure classification system pursuant to IEC 81346.\nApplies to properties in respect of:\n1) physical dimensions and regarding start, processing and output values of the component.\n2) modular view of subcomponents or a asset structure and 3) inputs and outputs of different signal types."@en ;
+        rdfs:label    "Construction"@en .
+
+rami:LifeCycleDimension
+        rdf:type             owl:Class ;
+        rdfs:label           "RAMI Life Cycle Dimension"@en ;
+        rdfs:seeAlso         "http://www.zvei.org/en/subjects/Industry-40/Pages/The-Reference-Architectural-Model-RAMI-40-and-the-Industrie-40-Component.aspx" ;
+        rdfs:seeAlso         <http://www.zvei.org/en/subjects/Industry-40/Pages/The-Reference-Architectural-Model-RAMI-40-and-the-Industrie-40-Component.aspx> ;
+        rdfs:subClassOf      rami:Dimension ;
+        owl:equivalentClass  [ rdf:type   owl:Class ;
+                               owl:oneOf  ( rami:Instance rami:Type )
+                             ] ;
+        skos:definition      "It describes the different Life Cycle and Value Stream layers for the RAMI model according to the IEC 62890 Standard."@en ;
+        skos:prefLabel       "RAMI Life Cycle Dimension"@en , "RAMI Layer"@en .
+
+rami:Dimension  rdf:type  owl:Class ;
+        rdfs:comment  "Abstract class to describe the three different dimensions of RAMI4.0"@en ;
+        rdfs:label    "Dimension"@en .
+
+rami:Instance  rdf:type  owl:NamedIndividual , rami:LifeCycleDimension .
+
+rami:Type  rdf:type  owl:NamedIndividual , rami:LifeCycleDimension ;
+        rdfs:label  "Type"@en .
+
+rami:MeasureEnergyEfficiency1
+        rdf:type              owl:NamedIndividual , om:Measure ;
+        rdfs:comment          "Measuring the Energy Efficiency for I4.0 component 1 in kilowattHour."@en ;
+        rdfs:label            "Measure Energy Efficiency 1"@en ;
+        owl:sameAs            rami:MeasureEnergyEfficiency2 ;
+        om:hasNumericalValue  "17.3"^^xsd:float ;
+        om:hasUnit            om:kilowattHour .
+
+rami:MeasureEnergyEfficiency2
+        rdf:type              owl:NamedIndividual , om:Measure ;
+        rdfs:comment          "Measuring the Energy Efficiency for I4.0 component 2 in Kilojoule."@en ;
+        rdfs:label            "Measure Energy Efficiency 2"@en ;
+        om:hasNumericalValue  "62280.0"^^xsd:float ;
+        om:hasUnit            om:kilojoule .
+
+om:kilowattHour  rdf:type  owl:NamedIndividual .
+
+dul:isPartOf  rdf:type    owl:ObjectProperty , owl:TransitiveProperty ;
+        rdfs:comment      "A relation between any entities, in this case, the Asset can be part of other Asset(s)." ;
+        rdfs:domain       rami:Asset ;
+        rdfs:isDefinedBy  <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+        rdfs:label        "is Part Of"@en ;
+        rdfs:range        rami:Asset .
+
+rami:Platform  rdf:type  owl:Class .
+
+rami:MESConnection  rdf:type  owl:Class ;
+        rdfs:subClassOf  rami:Submodel .
+
+skos:altLabel  rdf:type  owl:AnnotationProperty .
+
+rami:maxOutputFrequencyMs
+        rdf:type              owl:NamedIndividual , om:Measure ;
+        om:hasNumericalValue  "1.0"^^xsd:float ;
+        om:hasUnit            om:hertz .
+
+om:hertz  rdf:type  owl:NamedIndividual .
+
+dc:subject  rdf:type  owl:AnnotationProperty .
+
+rami:Station  rdf:type   owl:NamedIndividual , rami:HierarchyLevelDimension ;
+        skos:definition  "Station hierarchy level of RAMI 4.0"@en ;
+        skos:prefLabel   "Station"@en .
+
+rami:HierarchyLevelDimension
+        rdf:type             owl:Class ;
+        rdfs:seeAlso         <http://www.zvei.org/en/subjects/Industry-40/Pages/The-Reference-Architectural-Model-RAMI-40-and-the-Industrie-40-Component.aspx> ;
+        rdfs:subClassOf      rami:Dimension ;
+        owl:equivalentClass  [ rdf:type   owl:Class ;
+                               owl:oneOf  ( rami:ConnectedWorld rami:ControlDevice rami:Enterprise rami:FieldDevice rami:Product rami:Station rami:WorkCenter )
+                             ] ;
+        skos:definition      "It describes the functional classification of various circumstances within Industrie 4.0. For classification within a factory, this axis of the reference architecture(layers) follows the IEC 62264 Standard."@en ;
+        skos:prefLabel       "RAMI Hierarchy Level Dimension"@en .
+
+rami:isDescribedWith  rdf:type  owl:DatatypeProperty , owl:ObjectProperty ;
+        rdfs:domain      rami:AdminShell ;
+        rdfs:range       sto:Standard ;
+        skos:definition  "Points to the Standard used to describe a given object"@en ;
+        skos:prefLabel   "Is Described With"@en .
+
+rami:WorkCenter  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
+        skos:definition  "Work Center hierarchy level of RAMI 4.0"@en ;
+        skos:prefLabel   "Work Center"@en .
+
+rami:hasManifest  rdf:type  owl:ObjectProperty ;
+        rdfs:domain  rami:AdminShell ;
+        rdfs:label   "has Manifest"@en ;
+        rdfs:range   rami:Manifest .
+
+rami:Manifest  rdf:type  owl:Class ;
+        rdfs:label  "Manifest"@en .
+
+rami:   rdf:type                       owl:Ontology ;
+        rdfs:isDefinedBy               rami: ;
+        vann:preferredNamespacePrefix  "rami" ;
+        vann:preferredNamespaceUri     "https://w3id.org/i40/rami#" ;
+        void:vocabulary                xsd: , foaf: , rdfs: , xml: , skos: , rdf: , dc: ;
+        owl:versionInfo                "0.3" ;
+        skos:definition                "An Ontology to represents the Reference Architecture Model for Industry 4.0 (RAMI), including the concept of the Administration Shell I4.0 Component."@en ;
+        skos:prefLabel                 "rami"@en .
+
+rami:creationDate  rdf:type  owl:DatatypeProperty ;
+        rdfs:domain      rami:Submodel ;
+        rdfs:range       xsd:dateTime ;
+        skos:definition  "Date when an Agent(Person or Software) creates to the Entity/Object related data. It correspond to the Creator concept of OMM"@en ;
+        skos:prefLabel   "has Creator"@en .
+
+rami:Product  rdf:type   owl:NamedIndividual , rami:HierarchyLevelDimension ;
+        skos:definition  "Product hierarchy level of RAMI 4.0"@en ;
+        skos:prefLabel   "Product"@en .
+
+rami:Integration  rdf:type  owl:NamedIndividual .
+
+prov:wasGeneratedBy  rdf:type  owl:ObjectProperty ;
+        rdfs:domain      rami:Submodel ;
+        rdfs:range       prov:Agent ;
+        skos:definition  "Agent (Person or Software) that generates the Asset related data. It correspond to the Creator concept of OMM"@en ;
+        skos:prefLabel   "was Generated By"@en .
+
+rami:Order  rdf:type     owl:Class ;
+        skos:definition  "Each order for manufacturing runs through a life cycle and its specifics necessarily have an impact on the production facility during performance of the order"@en ;
+        skos:prefLabel   "Order"@en .
+
+dc:relation  rdf:type  owl:AnnotationProperty .
+
+dc:creator  rdf:type  owl:AnnotationProperty .
+
+skos:hiddenLabel  rdf:type  owl:AnnotationProperty .
+
+dc:format  rdf:type  owl:AnnotationProperty .
+
+rami:ConnectedWorld  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
+        skos:definition  "Connected World hierarchy level of RAMI 4.0. Group of Factories, and the collaboration with external engineering firms, component suppliers and customers"@en ;
+        skos:prefLabel   "Connected World"@en .
+
+rami:ControlDevice  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
+        skos:definition  "Control Device hierarchy level of RAMI 4.0"@en ;
+        skos:prefLabel   "Control Device"@en .
+
+rami:Enterprise  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
+        skos:definition  "Enterprise hierarchy level of RAMI 4.0"@en ;
+        skos:prefLabel   "Enterprise"@en .
+
+rami:FieldDevice  rdf:type  owl:NamedIndividual , rami:HierarchyLevelDimension ;
+        skos:definition  "Field Device hierarchy level of RAMI 4.0"@en ;
+        skos:prefLabel   "Field Device"@en .
+
+rami:CumulativeEnergyConsumption
+        rdf:type  owl:Class .
+
+rami:inAccordanceWith
+        rdf:type      owl:ObjectProperty ;
+        rdfs:comment  "The Submodel is in accordance with a given standard specified in the STO ontology"@en ;
+        rdfs:domain   rami:Submodel ;
+        rdfs:label    "in Accordance With"@en ;
+        rdfs:range    sto:Standard .
+
+rami:SensorMeasurement
+        rdf:type         owl:Class ;
+        rdfs:subClassOf  rami:Submodel .
+
+rami:I4.0Component2  rdf:type   rami:I4.0Component , owl:NamedIndividual ;
+        rdfs:label              "I4.0 Component 1"@en ;
+        rami:containsAS         rami:AdminShell1 ;
+        rami:hasI40ComponentId  "I40C111" .
+
+rami:AdminShell1  rdf:type    owl:NamedIndividual , rami:AdminShell ;
+        rdfs:label            "Admin Shell 1"@en ;
+        rami:hasAdminShellId  "AAS111" ;
+        rami:hasSubmodel      rami:EnergyEfficiency1 .
+
+rami:isConnectedTo  rdf:type  owl:ObjectProperty ;
+        rdfs:comment  "Connects the Admin Shell with the different RAMI4.0 Dimensions"@en ;
+        rdfs:domain   rami:AdminShell ;
+        rdfs:label    "is Connected To"@en ;
+        rdfs:range    rami:Dimension .
+
+rami:Functional  rdf:type  owl:NamedIndividual .
+
+dc:source  rdf:type  owl:AnnotationProperty .
+
+rami:AdminShellMotor  rdf:type  owl:NamedIndividual , rami:AdminShell ;
+        rdfs:label      "Admin Shell Motor"@en ;
+        rami:describes  rami:AssetMotorControl .
+
+rami:describes  rdf:type  owl:ObjectProperty ;
+        rdfs:comment  "Connect the Asset with the Administration Shell"@en ;
+        rdfs:domain   rami:AdminShell ;
+        rdfs:label    "describes"@en ;
+        rdfs:range    rami:Asset .
+
+rami:AssetMotorControl
+        rdf:type         owl:NamedIndividual , rami:Asset ;
+        rdfs:label       "Motor control"@en ;
+        rami:hasAssetId  "1501325" .
+
+dc:description  rdf:type  owl:AnnotationProperty .
+
+rami:Asset1  rdf:type    owl:NamedIndividual , rami:Asset ;
+        rdfs:label       "Asset 1"@en ;
+        rami:hasAssetId  "AS711" .
+
+rami:Communication  rdf:type  owl:NamedIndividual .
+
+rami:Machine  rdf:type   owl:Class ;
+        rdfs:subClassOf  rami:Asset ;
+        skos:definition  "A machine is ordered, designed, commissioned, operated, serviced, converted and recycled."@en ;
+        skos:prefLabel   "Machine"@en .
+
+om:kilojoule  rdf:type  owl:NamedIndividual .
+
+ssn:Sensor  rdf:type  owl:Class .
+
+geo:lat  rdf:type     owl:DatatypeProperty ;
+        rdfs:comment  "The WGS84 altitude of a SpatialThing (decimal meters above the local reference ellipsoid)."@en ;
+        rdfs:domain   rami:Machine ;
+        rdfs:label    "lat"@en ;
+        rdfs:range    xsd:decimal .
+
+rami:recordedTime  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment    "Recorded Time for a Machine"@en ;
+        rdfs:domain     rami:Machine ;
+        rdfs:range      xsd:dateTime ;
+        skos:prefLabel  "recorded Time"@en .
+
+rami:hasAdminShellId  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain         rami:AdminShell ;
+        rdfs:range          xsd:string ;
+        rdfs:subPropertyOf  dcterms:identifier ;
+        skos:definition     "Unique Identification of the Administration Shell"@en ;
+        skos:prefLabel      "has AdminShell Id"@en .
+
+rami:hasSubmodel  rdf:type  owl:ObjectProperty ;
+        rdfs:comment  "Points to the Admin Shell to the Submodels that describe the Admin Shell of a given Asset"@en ;
+        rdfs:domain   rami:AdminShell ;
+        rdfs:label    "has Submodel"@en ;
+        rdfs:range    rami:Submodel .
+
+rami:EnergyEfficiency1
+        rdf:type                    owl:NamedIndividual , rami:EnergyEfficiency ;
+        rdfs:label                  "Energy Efficiency 1 Submodel"@en ;
+        skos:definition             "Integrated electrical consumption over time."@en ;
+        skos:prefLabel              "Electrical consumption cumulative energy"@en ;
+        rami:energyEfficiencyValue  rami:MeasureEnergyEfficiency1 ;
+        rami:hasSemanticExpression  rami:Measurement ;
+        rami:hasView                rami:Performance ;
+        rami:subModelID             "AAB012" .
+
+rami:BusinessView  rdf:type  owl:NamedIndividual , rami:View ;
+        rdfs:label  "Business"@en , "Allows judging on the business suitability and performance of an asset.\nExamples: Manufacturer name, prices, terms of delivery, order codes.”"@en .
+
+rami:Location  rdf:type  owl:NamedIndividual , rami:View ;
+        rdfs:comment  "Describes the capabilities of the asset regarding environmental conditions and positions of the asset.\nDescribes the relationships capabilities of the asset or its parts or inputs and outputs with the linked assets.\nExamples: Degree of protection, working temperature, EMC characteristics, rated voltage, rated ultimate  \nshort-circuit breaking capacity."@en ;
+        rdfs:label    "Location"@en .
+
+rami:Performance  rdf:type  owl:NamedIndividual , rami:View ;
+        rdfs:comment  "Describes performance and behavioural characteristics. Examples: To allow a performance assessment and virtual commissioning of an overall system. Example: instantaneous short-circuit current setting"@en ;
+        rdfs:label    "Performance"@en .
+
+rami:description  rdf:type  owl:DatatypeProperty ;
+        rdfs:domain      rami:Asset ;
+        rdfs:range       xsd:string ;
+        skos:definition  "Description of the Object/Entity"@en ;
+        skos:prefLabel   "has Description"@en .
+
+rami:Measurement  rdf:type  owl:NamedIndividual , rami:ExpressionSemantic ;
+        rdfs:comment  "If a measured or actual value is provided"@en ;
+        rdfs:label    "Measurement"@en .
+
+rami:hasView  rdf:type  owl:ObjectProperty ;
+        rdfs:comment  "Points to the differents views associated to the Administration Shell via the Submodels."@en ;
+        rdfs:domain   rami:Submodel ;
+        rdfs:label    "has View"@en ;
+        rdfs:range    rami:View .
+
+rami:logs  rdf:type     owl:DatatypeProperty ;
+        rdfs:range      xsd:string ;
+        skos:prefLabel  "logs"@en .
+
+ssn:SensorOutput  rdf:type   owl:Class ;
+        owl:equivalentClass  rami:SensorMeasurementData .
+
+dc:contributor  rdf:type  owl:AnnotationProperty .
+
+rami:hasRAMILifeCycleLayer
+        rdf:type         owl:ObjectProperty ;
+        skos:definition  "Connects the concepts with the correspondent layer in the RAMI Hierarchy Levels"@en ;
+        skos:prefLabel   "has RAMI Life Cycle Layer" .
+
+rami:receivedAtTime  rdf:type  owl:DatatypeProperty ;
+        rdfs:domain      rami:AdminShell ;
+        rdfs:range       xsd:dateTime ;
+        skos:definition  "received Time of an Asset"@en ;
+        skos:prefLabel   "received At Time"@en .
+
+rami:hasEnergyValue  rdf:type  owl:DatatypeProperty ;
+        rdfs:domain     rami:CumulativeEnergyConsumption ;
+        rdfs:range      xsd:float ;
+        skos:prefLabel  "has Energy Value"@en .
+
+dc:date  rdf:type  owl:AnnotationProperty .
+
+dc:rights  rdf:type  owl:AnnotationProperty .
+
+rami:ITLayerDimension
+        rdf:type             owl:Class ;
+        rdfs:label           "RAMI IT Layer Dimension"@en ;
+        rdfs:subClassOf      rami:Dimension ;
+        owl:equivalentClass  [ rdf:type   owl:Class ;
+                               owl:oneOf  ( rami:Asset rami:Business rami:Communication rami:Functional rami:Information rami:Integration )
+                             ] .
+
+rami:hasDatatype  rdf:type  owl:ObjectProperty ;
+        rdfs:comment  "Points to the datatypes of the Submodels"@en ;
+        rdfs:domain   rami:Submodel ;
+        rdfs:label    "has Datatype"@en .
+
+dcterms:description  rdf:type  owl:AnnotationProperty .
+
+rami:ComponentManager
+        rdf:type    owl:Class ;
+        rdfs:label  "Component Manager"@en .
+
+foaf:Image  rdf:type  owl:Class .
+
+rami:Confirmation  rdf:type  owl:NamedIndividual , rami:ExpressionSemantic ;
+        rdfs:comment  "For responses to requests that describe the capability of an asset."@en ;
+        rdfs:label    "Confirmation"@en .
+
+rami:hasValue  rdf:type  owl:ObjectProperty ;
+        rdfs:comment  "Points to the current value that can be specified through an instanced submodel (for \ninstance in station 2) or through the asset."@en ;
+        rdfs:domain   rami:Submodel ;
+        rdfs:label    "has Value"@en ;
+        rdfs:range    rami:Value .
+
+rami:publishedURL  rdf:type  owl:DatatypeProperty .
+
+dc:title  rdf:type  owl:AnnotationProperty .
+
+rami:Platform1  rdf:type  owl:NamedIndividual .
+
+rami:releaseDate  rdf:type  owl:DatatypeProperty ;
+        rdfs:range       xsd:date ;
+        skos:definition  "Release Date of the Standard"@en ;
+        skos:prefLabel   "Release Date"@en .
+
+xsd:date  rdf:type  rdfs:Datatype .
+
+rami:hasRAMIHierarchyLevel
+        rdf:type         owl:ObjectProperty ;
+        rdfs:range       rami:HierarchyLevelDimension ;
+        skos:definition  "Connects the concepts with the correspondent layer in the RAMI Hierarchy Levels"@en ;
+        skos:prefLabel   "has RAMI Hierarchy Level"@en .
+
+rami:Information  rdf:type  owl:NamedIndividual .
+
+geo:long  rdf:type    owl:DatatypeProperty ;
+        rdfs:comment  "The WGS84 longitude of a SpatialThing (decimal degrees)."@en ;
+        rdfs:domain   rami:Machine ;
+        rdfs:label    "long"@en ;
+        rdfs:range    xsd:decimal .
+
+dc:type  rdf:type  owl:AnnotationProperty .
+
+rami:Asset2  rdf:type    owl:NamedIndividual , rami:Asset ;
+        rdfs:label       "Asset 2"@en ;
+        rami:hasAssetId  "AS712" .
+
+rami:hasReference  rdf:type  owl:ObjectProperty ;
+        rdfs:domain  rami:Submodel ;
+        rdfs:label   "has Reference"@en .
+
+rami:hasComponentManager
+        rdf:type     owl:ObjectProperty ;
+        rdfs:domain  rami:AdminShell ;
+        rdfs:label   "has Component Manager"@en ;
+        rdfs:range   rami:ComponentManager .
+
+foaf:image  rdf:type  owl:DatatypeProperty , owl:AnnotationProperty ;
+        rdfs:comment  "Image of the Asset reused from the FOAF ontology."@en ;
+        rdfs:domain   rami:Asset ;
+        rdfs:label    "image"@en ;
+        rdfs:range    xsd:anyURI .
+
+rami:EnergyEfficiency2
+        rdf:type                    owl:NamedIndividual , rami:EnergyEfficiency ;
+        rdfs:label                  "Energy Efficiency 2 Submodel"@en ;
+        rami:energyEfficiencyValue  rami:MeasureEnergyEfficiency2 ;
+        rami:subModelID             "AAB013" .
+
+rami:inventoryNumber  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain      rami:Asset ;
+        rdfs:range       xsd:string ;
+        skos:definition  "Inventory number of the Entity/Object according to the identification nomenclature"@en ;
+        skos:prefLabel   "Inventory Number"@en .
+
+rami:TransportInterface
+        rdf:type         owl:Class ;
+        rdfs:subClassOf  rami:Submodel .
+
+[ rdf:type     owl:AllDisjointClasses ;
+  owl:members  ( rami:HierarchyLevelDimension rami:ITLayerDimension rami:LifeCycleDimension )
+] .
